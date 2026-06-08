@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Precios · Plataforma para la Industria Textil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --paper:#fdf8f0;--paper2:#F5F0E8;--line:#e6dcc4;--line2:#d4c9b0;
+  --ink:#1A1410;--ink2:#3d342a;--muted:#7A6E5F;--faint:#9A8E7F;
+  --indigo:#4f46e5;--indigo-d:#4338ca;--indigo-soft:#eef2ff;--green:#16a34a;
+}
+html,body{font-family:'DM Sans',sans-serif;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;line-height:1.5}
+.wrap{max-width:1080px;margin:0 auto;padding:64px 28px 80px}
+
+/* HERO */
+.hero{text-align:center;max-width:40em;margin:0 auto}
+.kicker{display:inline-flex;align-items:center;gap:9px;padding:7px 15px 7px 12px;border:1px solid var(--indigo);background:var(--indigo-soft);color:var(--indigo-d);border-radius:999px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:500}
+h1{font-family:'DM Serif Display',serif;font-weight:400;font-size:clamp(38px,6vw,60px);line-height:1.04;letter-spacing:-1px;margin-top:22px;color:var(--ink)}
+h1 em{font-style:italic;color:var(--indigo)}
+.sub{margin-top:18px;font-size:16px;color:var(--ink2);line-height:1.6}
+
+/* TOGGLE */
+.toggle-row{display:flex;justify-content:center;margin-top:40px}
+.toggle{display:inline-flex;background:var(--paper2);border:1px solid var(--line2);border-radius:999px;padding:5px;position:relative}
+.toggle button{position:relative;z-index:2;border:none;background:transparent;cursor:pointer;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:var(--muted);padding:10px 22px;border-radius:999px;transition:color .2s}
+.toggle button.on{color:#fff}
+.toggle .slider{position:absolute;top:5px;bottom:5px;border-radius:999px;background:var(--ink);transition:all .25s cubic-bezier(.4,0,.2,1);z-index:1}
+.save-tag{display:inline-block;margin-left:10px;background:#dcfce7;color:#15803d;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;font-weight:600;padding:3px 9px;border-radius:999px;text-transform:uppercase;vertical-align:middle}
+
+/* PLAN CARD */
+.card{max-width:500px;margin:36px auto 0;background:#fffdf8;border:1px solid var(--line2);border-radius:18px;padding:38px 36px;box-shadow:0 20px 50px rgba(26,20,16,.10),0 4px 12px rgba(26,20,16,.05);position:relative}
+.card-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--indigo);color:#fff;font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;padding:6px 16px;border-radius:999px;white-space:nowrap;box-shadow:0 6px 16px rgba(79,70,229,.3)}
+.plan-name{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:600;text-align:center}
+.price-row{text-align:center;margin-top:14px;display:flex;align-items:baseline;justify-content:center;gap:4px}
+.price{font-family:'DM Serif Display',serif;font-size:62px;line-height:1;color:var(--ink);letter-spacing:-1px}
+.price-cur{font-family:'DM Serif Display',serif;font-size:30px;color:var(--ink);align-self:flex-start;margin-top:8px}
+.price-per{font-size:15px;color:var(--muted);font-weight:500}
+.bill-detail{text-align:center;margin-top:10px;font-size:13.5px;color:var(--ink2);min-height:20px}
+.bill-detail b{color:var(--ink);font-weight:600}
+.setup-line{text-align:center;margin-top:6px;font-family:'DM Mono',monospace;font-size:11.5px;letter-spacing:.04em;color:var(--muted);text-transform:uppercase}
+.setup-line .free{color:var(--green);font-weight:700}
+.save-banner{text-align:center;margin-top:16px;background:#dcfce7;color:#15803d;border-radius:10px;padding:9px;font-size:13px;font-weight:600}
+
+.cta{display:block;width:100%;margin-top:26px;padding:15px;background:var(--ink);color:#f5efe2;border:none;border-radius:11px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;text-decoration:none;text-align:center;cursor:pointer;transition:all .18s ease}
+.cta:hover{background:var(--indigo);transform:translateY(-2px);box-shadow:0 10px 26px rgba(79,70,229,.25)}
+.cta-sub{display:block;text-align:center;margin-top:14px;font-size:13.5px;color:var(--indigo-d);text-decoration:none;font-weight:500}
+.cta-sub:hover{text-decoration:underline}
+
+.feats{list-style:none;margin-top:30px;padding-top:26px;border-top:1px solid var(--line)}
+.feats li{display:flex;align-items:flex-start;gap:11px;padding:8px 0;font-size:14.5px;color:var(--ink2)}
+.feats .ck{flex:none;width:20px;height:20px;border-radius:50%;background:var(--indigo-soft);color:var(--indigo-d);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;margin-top:1px}
+.feats .star{background:#fef3c7;color:#b45309}
+
+/* VALUE STRIP */
+.value{max-width:600px;margin:44px auto 0;text-align:center;background:var(--paper2);border:1px solid var(--line);border-radius:14px;padding:26px 30px}
+.value .big{font-family:'DM Serif Display',serif;font-style:italic;font-size:22px;line-height:1.35;color:var(--ink)}
+.value .small{margin-top:10px;font-size:14px;color:var(--ink2)}
+
+/* NOTE + FOOTER */
+.note{max-width:600px;margin:28px auto 0;text-align:center;font-size:13.5px;color:var(--muted);line-height:1.6}
+.note a{color:var(--indigo-d);font-weight:600;text-decoration:none}
+.note a:hover{text-decoration:underline}
+.foot{margin-top:60px;text-align:center;font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <span class="kicker">● Plataforma para la Industria Textil</span>
+    <h1>Un plan.<br/><em>Todo tu negocio incluido.</em></h1>
+    <p class="sub">Sin módulos escondidos ni sorpresas. Todo lo que necesitas para ordenar tu operación textil — inventario, pagos, embarques y más — en una sola plataforma.</p>
+  </div>
+
+  <div class="toggle-row">
+    <div class="toggle">
+      <span class="slider" id="slider"></span>
+      <button id="btnMensual" onclick="setPlan('mensual')">Mensual</button>
+      <button id="btnAnual" class="on" onclick="setPlan('anual')">Anual <span class="save-tag">2 meses gratis</span></button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-badge" id="badge">★ Recomendado · Ahorra ~$10,000 al año</div>
+    <div class="plan-name">Plan Profesional</div>
+    <div class="price-row">
+      <span class="price-cur">$</span><span class="price" id="price">2,075</span>
+      <span class="price-per">/mes</span>
+    </div>
+    <div class="bill-detail" id="billDetail">facturado anual · <b>$24,900/año</b></div>
+    <div class="setup-line" id="setupLine">Setup inicial <span class="free">GRATIS</span></div>
+    <div class="save-banner" id="saveBanner">Ahorras casi $10,000 el primer año vs el plan mensual</div>
+
+    <a class="cta" href="https://wa.me/525618735396?text=Hola,%20quiero%20agendar%20una%20demo%20de%20la%20plataforma" target="_blank" rel="noopener">Agendar una demo</a>
+    <a class="cta-sub" href="index.html">Ver la plataforma en vivo →</a>
+
+    <ul class="feats">
+      <li><span class="ck">✓</span> Los 6 módulos completos: Inicio, Mi Día, Inventario, Pagos, Embarques y Caja</li>
+      <li><span class="ck">✓</span> Inventario de telas en tiempo real con alertas de stock</li>
+      <li><span class="ck">✓</span> Control de pagos y cobranza con saldos automáticos</li>
+      <li><span class="ck">✓</span> Seguimiento de embarques de importación</li>
+      <li><span class="ck star">★</span> Reportes de WhatsApp automáticos</li>
+      <li><span class="ck">✓</span> Notificaciones a tu celular cada mañana y tarde</li>
+      <li><span class="ck">✓</span> Tablero mensual con la inteligencia de tu negocio</li>
+      <li><span class="ck">✓</span> Hasta 5 usuarios para tu equipo</li>
+      <li><span class="ck">✓</span> Soporte y actualizaciones incluidas</li>
+    </ul>
+  </div>
+
+  <div class="value">
+    <div class="big">«$69 al día — menos que una comida con el equipo, por tener todo tu negocio bajo control.»</div>
+    <div class="small">¿Cuánto te cuesta quedarte sin tela un día, o que se te pase un cobro? Esto lo evita.</div>
+  </div>
+
+  <p class="note">¿Tu operación es más chica o más grande? También tengo planes <b>Básico</b> y <b>Empresa</b> — <a href="https://wa.me/525618735396" target="_blank" rel="noopener">escríbeme y lo vemos</a>.</p>
+
+  <div class="foot">Software para la industria textil</div>
+
+</div>
+
+<script>
+const PLANS = {
+  anual:   { price:"2,075", detail:'facturado anual · <b>$24,900/año</b>', setup:'Setup inicial <span class="free">GRATIS</span>', save:"Ahorras casi $10,000 el primer año vs el plan mensual", saveShow:true, badge:"★ Recomendado · Ahorra ~$10,000 al año" },
+  mensual: { price:"2,490", detail:'pago mes a mes · <b>sin compromiso</b>', setup:'+ Setup inicial único de $5,000', save:"", saveShow:false, badge:"Cancela cuando quieras" }
+};
+function setPlan(p){
+  const d = PLANS[p];
+  document.getElementById('price').textContent = d.price;
+  document.getElementById('billDetail').innerHTML = d.detail;
+  document.getElementById('setupLine').innerHTML = d.setup;
+  const sb = document.getElementById('saveBanner');
+  sb.style.display = d.saveShow ? 'block' : 'none';
+  sb.textContent = d.save;
+  document.getElementById('badge').textContent = d.badge;
+  // toggle states
+  document.getElementById('btnMensual').classList.toggle('on', p==='mensual');
+  document.getElementById('btnAnual').classList.toggle('on', p==='anual');
+  moveSlider();
+}
+function moveSlider(){
+  const anualOn = document.getElementById('btnAnual').classList.contains('on');
+  const btn = anualOn ? document.getElementById('btnAnual') : document.getElementById('btnMensual');
+  const slider = document.getElementById('slider');
+  slider.style.left = btn.offsetLeft + 'px';
+  slider.style.width = btn.offsetWidth + 'px';
+}
+window.addEventListener('load', moveSlider);
+window.addEventListener('resize', moveSlider);
+</script>
+</body>
+</html>
