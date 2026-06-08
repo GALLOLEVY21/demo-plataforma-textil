@@ -1,156 +1,299 @@
-<!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Precios · Plataforma para la Industria Textil</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<!doctype html><html lang="es"><head><meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<title>Plataforma para la Industria Textil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --paper:#fdf8f0;--paper2:#F5F0E8;--line:#e6dcc4;--line2:#d4c9b0;
-  --ink:#1A1410;--ink2:#3d342a;--muted:#7A6E5F;--faint:#9A8E7F;
-  --indigo:#4f46e5;--indigo-d:#4338ca;--indigo-soft:#eef2ff;--green:#16a34a;
-}
-html,body{font-family:'DM Sans',sans-serif;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;line-height:1.5}
-.wrap{max-width:1080px;margin:0 auto;padding:64px 28px 80px}
-
-/* HERO */
-.hero{text-align:center;max-width:40em;margin:0 auto}
-.kicker{display:inline-flex;align-items:center;gap:9px;padding:7px 15px 7px 12px;border:1px solid var(--indigo);background:var(--indigo-soft);color:var(--indigo-d);border-radius:999px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:500}
-h1{font-family:'DM Serif Display',serif;font-weight:400;font-size:clamp(38px,6vw,60px);line-height:1.04;letter-spacing:-1px;margin-top:22px;color:var(--ink)}
-h1 em{font-style:italic;color:var(--indigo)}
-.sub{margin-top:18px;font-size:16px;color:var(--ink2);line-height:1.6}
-
-/* TOGGLE */
-.toggle-row{display:flex;justify-content:center;margin-top:40px}
-.toggle{display:inline-flex;background:var(--paper2);border:1px solid var(--line2);border-radius:999px;padding:5px;position:relative}
-.toggle button{position:relative;z-index:2;border:none;background:transparent;cursor:pointer;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:var(--muted);padding:10px 22px;border-radius:999px;transition:color .2s}
-.toggle button.on{color:#fff}
-.toggle .slider{position:absolute;top:5px;bottom:5px;border-radius:999px;background:var(--ink);transition:all .25s cubic-bezier(.4,0,.2,1);z-index:1}
-.save-tag{display:inline-block;margin-left:10px;background:#dcfce7;color:#15803d;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;font-weight:600;padding:3px 9px;border-radius:999px;text-transform:uppercase;vertical-align:middle}
-
-/* PLAN CARD */
-.card{max-width:500px;margin:36px auto 0;background:#fffdf8;border:1px solid var(--line2);border-radius:18px;padding:38px 36px;box-shadow:0 20px 50px rgba(26,20,16,.10),0 4px 12px rgba(26,20,16,.05);position:relative}
-.card-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--indigo);color:#fff;font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;padding:6px 16px;border-radius:999px;white-space:nowrap;box-shadow:0 6px 16px rgba(79,70,229,.3)}
-.plan-name{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:600;text-align:center}
-.price-row{text-align:center;margin-top:14px;display:flex;align-items:baseline;justify-content:center;gap:4px}
-.price{font-family:'DM Serif Display',serif;font-size:62px;line-height:1;color:var(--ink);letter-spacing:-1px}
-.price-cur{font-family:'DM Serif Display',serif;font-size:30px;color:var(--ink);align-self:flex-start;margin-top:8px}
-.price-per{font-size:15px;color:var(--muted);font-weight:500}
-.bill-detail{text-align:center;margin-top:10px;font-size:13.5px;color:var(--ink2);min-height:20px}
-.bill-detail b{color:var(--ink);font-weight:600}
-.setup-line{text-align:center;margin-top:6px;font-family:'DM Mono',monospace;font-size:11.5px;letter-spacing:.04em;color:var(--muted);text-transform:uppercase}
-.setup-line .free{color:var(--green);font-weight:700}
-.save-banner{text-align:center;margin-top:16px;background:#dcfce7;color:#15803d;border-radius:10px;padding:9px;font-size:13px;font-weight:600}
-
-.cta{display:block;width:100%;margin-top:26px;padding:15px;background:var(--ink);color:#f5efe2;border:none;border-radius:11px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;text-decoration:none;text-align:center;cursor:pointer;transition:all .18s ease}
-.cta:hover{background:var(--indigo);transform:translateY(-2px);box-shadow:0 10px 26px rgba(79,70,229,.25)}
-.cta-sub{display:block;text-align:center;margin-top:14px;font-size:13.5px;color:var(--indigo-d);text-decoration:none;font-weight:500}
-.cta-sub:hover{text-decoration:underline}
-
-.feats{list-style:none;margin-top:30px;padding-top:26px;border-top:1px solid var(--line)}
-.feats li{display:flex;align-items:flex-start;gap:11px;padding:8px 0;font-size:14.5px;color:var(--ink2)}
-.feats .ck{flex:none;width:20px;height:20px;border-radius:50%;background:var(--indigo-soft);color:var(--indigo-d);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;margin-top:1px}
-.feats .star{background:#fef3c7;color:#b45309}
-
-/* VALUE STRIP */
-.value{max-width:600px;margin:44px auto 0;text-align:center;background:var(--paper2);border:1px solid var(--line);border-radius:14px;padding:26px 30px}
-.value .big{font-family:'DM Serif Display',serif;font-style:italic;font-size:22px;line-height:1.35;color:var(--ink)}
-.value .small{margin-top:10px;font-size:14px;color:var(--ink2)}
-
-/* NOTE + FOOTER */
-.note{max-width:600px;margin:28px auto 0;text-align:center;font-size:13.5px;color:var(--muted);line-height:1.6}
-.note a{color:var(--indigo-d);font-weight:600;text-decoration:none}
-.note a:hover{text-decoration:underline}
-.foot{margin-top:60px;text-align:center;font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint)}
-</style>
-</head>
+:root{--paper:#fdf8f0;--paper2:#F5F0E8;--line:#e6dcc4;--line2:#d4c9b0;--ink:#1A1410;--ink2:#3d342a;--muted:#7A6E5F;--faint:#9A8E7F;--indigo:#4f46e5;--indigo-d:#4338ca;--indigo-soft:#eef2ff;--green:#16a34a;}
+html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased}
+body{display:flex;align-items:center;justify-content:center}
+.deck{position:relative;width:100vw;height:100vh}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;padding:28px 40px 22px;background:var(--paper);overflow:hidden}
+.slide.active{display:flex}
+.cover-wrap{flex:1;display:flex;flex-direction:column;padding:18px 36px}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px}
+.cover-kicker{display:inline-flex;align-items:center;gap:9px;padding:7px 14px 7px 11px;border:1px solid var(--indigo);background:var(--indigo-soft);color:var(--indigo-d);border-radius:999px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:500}
+.cover-meta{text-align:right;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;line-height:1.8}
+.cover-meta b{color:var(--ink);font-weight:500}
+.cover-h1{font-family:'DM Serif Display',serif;font-size:60px;font-weight:400;line-height:1.02;letter-spacing:-1px;color:var(--ink)}
+.cover-h1 em{font-style:italic;color:var(--indigo)}
+.cover-lead{margin-top:18px;font-size:14px;color:var(--ink2);max-width:54em;line-height:1.55}
+.cover-lead b{color:var(--ink);font-weight:600}
+.ix{margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:9px 22px;align-content:start}
+.ix-row{display:flex;align-items:center;gap:14px;padding:13px 18px;background:#fffdf8;border:1px solid var(--line);border-radius:11px;cursor:pointer;transition:all .15s ease;font-family:inherit;text-align:left;width:100%}
+.ix-row:hover{transform:translateY(-2px);border-color:var(--line2);box-shadow:0 8px 22px rgba(26,20,16,.10)}
+.ix-dot{width:11px;height:11px;border-radius:50%;flex:none}
+.ix-n{font-family:'DM Mono',monospace;font-size:12px;color:var(--faint);width:24px;letter-spacing:.1em}
+.ix-t{font-size:15px;font-weight:600;color:var(--ink);flex:1}
+.ix-arrow{margin-left:8px;color:var(--faint);font-size:18px;transition:transform .15s,color .15s}
+.ix-row:hover .ix-arrow{color:var(--indigo);transform:translateX(3px)}
+.precios-row{grid-column:1 / -1;background:#f0fdf4;border-color:#bbf7d0}
+.precios-row:hover{border-color:#86efac;box-shadow:0 8px 22px rgba(22,163,74,.12)}
+.precios-row .ix-t{color:#15803d}
+.precios-row:hover .ix-arrow{color:var(--green)}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.topL{display:flex;align-items:center;gap:10px}
+.bullet{width:12px;height:12px;border-radius:50%}
+.kicker{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.24em;color:var(--muted);text-transform:uppercase;font-weight:600}
+.back-btn{padding:8px 16px;background:transparent;border:1px solid var(--line2);border-radius:999px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--ink2);text-transform:uppercase;cursor:pointer;transition:all .15s ease}
+.back-btn:hover{background:var(--ink);color:#f5efe2;border-color:var(--ink)}
+.title{font-family:'DM Serif Display',serif;font-weight:400;font-size:42px;line-height:1.04;letter-spacing:-.5px;color:var(--ink);margin-bottom:14px}
+.title em{font-style:italic;color:var(--green)}
+.layout{flex:1;display:grid;grid-template-columns:60% 1fr;gap:34px;min-height:0;overflow:hidden}
+.shot-wrap{display:flex;flex-direction:column;align-items:stretch;justify-content:center;min-height:0;gap:12px}
+.demo-cta{display:flex;align-items:center;justify-content:center;gap:12px;padding:11px 18px;background:var(--ink);color:#f5efe2;border-radius:8px;font-family:'DM Mono',monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;font-weight:600;transition:all .18s ease;flex:none}
+.demo-cta:hover{background:var(--mc);color:#fff;transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.18)}
+.dcta-ic{font-size:14px;line-height:1}.dcta-arrow{opacity:.65;font-size:14px}.demo-cta:hover .dcta-arrow{opacity:1}
+.shot{max-width:100%;max-height:calc(100% - 50px);width:auto;height:auto;object-fit:contain;border:1px solid var(--line2);border-radius:6px;box-shadow:0 14px 34px rgba(26,20,16,.12),0 3px 8px rgba(26,20,16,.06);background:#fff;cursor:zoom-in;transition:transform .15s;align-self:center}
+.shot:hover{transform:scale(1.01)}
+.info{display:flex;flex-direction:column;justify-content:center;overflow-y:auto;padding-right:6px}
+.lead-desc{font-family:'DM Serif Display',serif;font-size:21px;line-height:1.32;color:var(--ink);margin-bottom:22px}
+.feats{list-style:none;padding:0}
+.feats li{display:flex;gap:12px;padding:11px 0;font-size:14.5px;line-height:1.45;color:var(--ink2);border-bottom:1px solid var(--line)}
+.feats li:last-child{border-bottom:none}
+.feats li::before{content:"→";color:var(--mc);font-weight:700;flex:none}
+.bottom{display:flex;justify-content:space-between;align-items:center;padding-top:18px;margin-top:14px;border-top:1px solid var(--line)}
+.nav{padding:9px 18px;background:transparent;border:1px solid var(--line2);border-radius:999px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--ink2);text-transform:uppercase;cursor:pointer;transition:all .15s ease;font-weight:500}
+.nav:hover:not([disabled]){background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.nav[disabled]{opacity:.35;cursor:default}
+.pager{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.18em;color:var(--muted)}
+.pager .curN{color:var(--ink);font-weight:600}
+.subtabs{display:flex;gap:6px;margin-bottom:12px}
+.stab{padding:8px 16px;border:1px solid var(--line2);background:transparent;border-radius:999px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;cursor:pointer;font-weight:500;transition:all .15s ease}
+.stab:hover{color:var(--ink);border-color:var(--ink)}
+.stab.active{background:var(--ink);color:#f5efe2;border-color:var(--ink)}
+.tabpane{display:none;flex:1;min-height:0}
+.tabpane.active{display:flex;flex-direction:column}
+/* PRECIOS SLIDE */
+.price-layout{flex:1;display:grid;grid-template-columns:minmax(0,420px) 1fr;gap:48px;align-items:center;min-height:0;padding:0 20px}
+.pcard{background:#fffdf8;border:1px solid var(--line2);border-radius:18px;padding:30px 32px;box-shadow:0 18px 44px rgba(26,20,16,.10)}
+.ptoggle{display:flex;background:var(--paper2);border:1px solid var(--line2);border-radius:999px;padding:5px;position:relative;margin-bottom:22px}
+.ptoggle button{position:relative;z-index:2;flex:1;border:none;background:transparent;cursor:pointer;font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:500;color:var(--muted);padding:9px 6px;border-radius:999px;transition:color .2s}
+.ptoggle button.on{color:#fff}
+.pslider{position:absolute;top:5px;bottom:5px;border-radius:999px;background:var(--ink);transition:all .25s cubic-bezier(.4,0,.2,1);z-index:1}
+.pprice-row{display:flex;align-items:baseline;justify-content:center;gap:3px}
+.pcur{font-family:'DM Serif Display',serif;font-size:28px;color:var(--ink);align-self:flex-start;margin-top:6px}
+.pprice{font-family:'DM Serif Display',serif;font-size:58px;line-height:1;color:var(--ink);letter-spacing:-1px}
+.pper{font-size:14px;color:var(--muted);font-weight:500}
+.pbill{text-align:center;margin-top:8px;font-size:13px;color:var(--ink2)}
+.pbill b{color:var(--ink);font-weight:600}
+.psetup{text-align:center;margin-top:5px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.04em;color:var(--muted);text-transform:uppercase}
+.pfree{color:var(--green);font-weight:700}
+.psave{text-align:center;margin-top:14px;background:#dcfce7;color:#15803d;border-radius:9px;padding:8px;font-size:12.5px;font-weight:600}
+.pcta{display:block;margin-top:20px;padding:14px;background:var(--ink);color:#f5efe2;border-radius:10px;font-size:15px;font-weight:600;text-decoration:none;text-align:center;transition:all .18s ease}
+.pcta:hover{background:var(--green);transform:translateY(-2px);box-shadow:0 10px 26px rgba(22,163,74,.28)}
+.pinfo{display:flex;flex-direction:column;justify-content:center}
+.plead{font-family:'DM Serif Display',serif;font-size:26px;line-height:1.3;color:var(--ink);margin-bottom:24px}
+.plead b{color:var(--green);font-style:italic}
+.pfeats{list-style:none;padding:0}
+.pfeats li{display:flex;gap:12px;padding:10px 0;font-size:15px;color:var(--ink2);border-bottom:1px solid var(--line)}
+.pfeats li::before{content:"✓";color:var(--green);font-weight:700;flex:none}
+.pfeats li b{color:var(--ink);font-weight:600}
+.pnote{margin-top:18px;font-size:13px;color:var(--muted);font-style:italic}
+.lb{position:fixed;inset:0;background:rgba(15,17,20,.94);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out;padding:30px}
+.lb.show{display:flex}
+.lb img{max-width:100%;max-height:100%;border-radius:4px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.lb-hint{position:absolute;bottom:18px;left:0;right:0;text-align:center;font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.2em;color:#94a3b8;text-transform:uppercase}
+</style></head>
 <body>
-<div class="wrap">
-
-  <div class="hero">
-    <span class="kicker">● Plataforma para la Industria Textil</span>
-    <h1>Un plan.<br/><em>Todo tu negocio incluido.</em></h1>
-    <p class="sub">Sin módulos escondidos ni sorpresas. Todo lo que necesitas para ordenar tu operación textil — inventario, pagos, embarques y más — en una sola plataforma.</p>
-  </div>
-
-  <div class="toggle-row">
-    <div class="toggle">
-      <span class="slider" id="slider"></span>
-      <button id="btnMensual" onclick="setPlan('mensual')">Mensual</button>
-      <button id="btnAnual" class="on" onclick="setPlan('anual')">Anual <span class="save-tag">2 meses gratis</span></button>
+<div class="deck">
+  
+<section class="slide active" data-id="cover">
+  <div class="cover-wrap">
+    <div class="cover-top">
+      <span class="cover-kicker">● Plataforma para la Industria Textil</span>
+      <div class="cover-meta">Sistema de gestión<br/><b>6 módulos</b></div>
+    </div>
+    <h1 class="cover-h1">Todo tu negocio textil,<br/><em>en una sola plataforma.</em></h1>
+    <div class="cover-lead">Pícale a cada módulo para ver cómo funciona, con una vista de la pantalla real. El botón <b>"Ver en la demo en vivo"</b> abre la plataforma para que la pruebes tú mismo. Atajos: ← / → para navegar, <b>F</b> para pantalla completa.</div>
+    <div class="ix">
+      <button class="ix-row" data-go="m1"><span class="ix-dot" style="background:#4f46e5"></span><span class="ix-n">01</span><span class="ix-t">Panel de Inicio</span><span class="ix-arrow">→</span></button><button class="ix-row" data-go="m2"><span class="ix-dot" style="background:#4f46e5"></span><span class="ix-n">02</span><span class="ix-t">Mi Día</span><span class="ix-arrow">→</span></button><button class="ix-row" data-go="m3"><span class="ix-dot" style="background:#1A1410"></span><span class="ix-n">03</span><span class="ix-t">Inventario de Telas</span><span class="ix-arrow">→</span></button><button class="ix-row" data-go="m4"><span class="ix-dot" style="background:#2563eb"></span><span class="ix-n">04</span><span class="ix-t">Control de Pagos</span><span class="ix-arrow">→</span></button><button class="ix-row" data-go="m5"><span class="ix-dot" style="background:#0e7490"></span><span class="ix-n">05</span><span class="ix-t">Embarques de Importación</span><span class="ix-arrow">→</span></button><button class="ix-row" data-go="m6"><span class="ix-dot" style="background:#b91c1c"></span><span class="ix-n">06</span><span class="ix-t">Control de Caja</span><span class="ix-arrow">→</span></button>
+      <button class="ix-row precios-row" data-go="precios"><span class="ix-dot" style="background:#16a34a"></span><span class="ix-n">07</span><span class="ix-t">Precios y planes</span><span class="ix-arrow">→</span></button>
     </div>
   </div>
-
-  <div class="card">
-    <div class="card-badge" id="badge">★ Recomendado · Ahorra ~$10,000 al año</div>
-    <div class="plan-name">Plan Profesional</div>
-    <div class="price-row">
-      <span class="price-cur">$</span><span class="price" id="price">2,075</span>
-      <span class="price-per">/mes</span>
-    </div>
-    <div class="bill-detail" id="billDetail">facturado anual · <b>$24,900/año</b></div>
-    <div class="setup-line" id="setupLine">Setup inicial <span class="free">GRATIS</span></div>
-    <div class="save-banner" id="saveBanner">Ahorras casi $10,000 el primer año vs el plan mensual</div>
-
-    <a class="cta" href="https://wa.me/525618735396?text=Hola,%20quiero%20agendar%20una%20demo%20de%20la%20plataforma" target="_blank" rel="noopener">Agendar una demo</a>
-    <a class="cta-sub" href="index.html">Ver la plataforma en vivo →</a>
-
-    <ul class="feats">
-      <li><span class="ck">✓</span> Los 6 módulos completos: Inicio, Mi Día, Inventario, Pagos, Embarques y Caja</li>
-      <li><span class="ck">✓</span> Inventario de telas en tiempo real con alertas de stock</li>
-      <li><span class="ck">✓</span> Control de pagos y cobranza con saldos automáticos</li>
-      <li><span class="ck">✓</span> Seguimiento de embarques de importación</li>
-      <li><span class="ck star">★</span> Reportes de WhatsApp automáticos</li>
-      <li><span class="ck">✓</span> Notificaciones a tu celular cada mañana y tarde</li>
-      <li><span class="ck">✓</span> Tablero mensual con la inteligencia de tu negocio</li>
-      <li><span class="ck">✓</span> Hasta 5 usuarios para tu equipo</li>
-      <li><span class="ck">✓</span> Soporte y actualizaciones incluidas</li>
-    </ul>
-  </div>
-
-  <div class="value">
-    <div class="big">«$69 al día — menos que una comida con el equipo, por tener todo tu negocio bajo control.»</div>
-    <div class="small">¿Cuánto te cuesta quedarte sin tela un día, o que se te pase un cobro? Esto lo evita.</div>
-  </div>
-
-  <p class="note">¿Tu operación es más chica o más grande? También tengo planes <b>Básico</b> y <b>Empresa</b> — <a href="https://wa.me/525618735396" target="_blank" rel="noopener">escríbeme y lo vemos</a>.</p>
-
-  <div class="foot">Software para la industria textil</div>
-
+</section>
+  
+    <section class="slide" data-id="m1">
+      <div class="top">
+        <div class="topL"><span class="bullet" style="background:#4f46e5"></span>
+        <span class="kicker">Módulo N° 01</span></div>
+        <button class="back-btn" data-go="cover">← Regresar al índice</button>
+      </div>
+      <h2 class="title">Panel de Inicio</h2>
+      <div class="layout"><div class="shot-wrap"><a class="demo-cta" style="--mc:#4f46e5" href="demo.html#vista=dashboard" target="_blank" rel="noopener"><span class="dcta-ic">🖥</span><span class="dcta-t">Ver esta pantalla en la demo en vivo</span><span class="dcta-arrow">↗</span></a><img class="shot" src="s1_inicio.png" alt="Panel de Inicio" data-zoom="1"/></div><div class="info"><p class="lead-desc">Lo primero que ves cada mañana: el resumen completo de tu negocio en una sola pantalla.</p><ul class="feats" style="--mc:#4f46e5"><li>Entregas y arribos del día</li><li>Tareas pendientes por prioridad</li><li>Resumen de inventario, embarques y caja</li></ul></div></div>
+      <div class="bottom">
+        <button class="nav prev">← Anterior</button>
+        <div class="pager"><span class="curN">2</span> / 8</div>
+        <button class="nav next">Siguiente →</button>
+      </div>
+    </section>
+    <section class="slide" data-id="m2">
+      <div class="top">
+        <div class="topL"><span class="bullet" style="background:#4f46e5"></span>
+        <span class="kicker">Módulo N° 02</span></div>
+        <button class="back-btn" data-go="cover">← Regresar al índice</button>
+      </div>
+      <h2 class="title">Mi Día</h2>
+      <div class="layout"><div class="shot-wrap"><a class="demo-cta" style="--mc:#4f46e5" href="demo.html#vista=mi_dia" target="_blank" rel="noopener"><span class="dcta-ic">🖥</span><span class="dcta-t">Ver esta pantalla en la demo en vivo</span><span class="dcta-arrow">↗</span></a><img class="shot" src="s2_mi_dia.png" alt="Mi Día" data-zoom="1"/></div><div class="info"><p class="lead-desc">Tus entregas y pendientes del día, organizados por prioridad y por fecha.</p><ul class="feats" style="--mc:#4f46e5"><li>Entregas programadas con su detalle</li><li>Tareas con prioridad por color</li><li>Recordatorios que se repiten en automático</li></ul></div></div>
+      <div class="bottom">
+        <button class="nav prev">← Anterior</button>
+        <div class="pager"><span class="curN">2</span> / 8</div>
+        <button class="nav next">Siguiente →</button>
+      </div>
+    </section>
+    <section class="slide" data-id="m3">
+      <div class="top">
+        <div class="topL"><span class="bullet" style="background:#1A1410"></span>
+        <span class="kicker">Módulo N° 03</span></div>
+        <button class="back-btn" data-go="cover">← Regresar al índice</button>
+      </div>
+      <h2 class="title">Inventario de Telas</h2>
+      <div class="subtabs"><button class="stab active" data-tab="movs" data-module="m3">Movimientos</button><button class="stab" data-tab="cat" data-module="m3">Catálogo</button><button class="stab" data-tab="tab" data-module="m3">Tablero Mensual</button></div><div class="tabpane active" data-tab="movs"><div class="layout"><div class="shot-wrap"><a class="demo-cta" style="--mc:#1A1410" href="demo.html#vista=inventario&tabInv=movimientos" target="_blank" rel="noopener"><span class="dcta-ic">🖥</span><span class="dcta-t">Ver esta pantalla en la demo en vivo</span><span class="dcta-arrow">↗</span></a><img class="shot" src="s4_inv_movs.png" alt="Movimientos" data-zoom="1"/></div><div class="info"><p class="lead-desc">Registra cada entrada y salida de tela, y genera el reporte del día.</p><ul class="feats" style="--mc:#1A1410"><li>Alta de movimientos en segundos</li><li>Reporte diario listo para WhatsApp</li><li>Reportes por semana o por mes</li></ul></div></div></div><div class="tabpane" data-tab="cat"><div class="layout"><div class="shot-wrap"><a class="demo-cta" style="--mc:#1A1410" href="demo.html#vista=inventario&tabInv=catalogo" target="_blank" rel="noopener"><span class="dcta-ic">🖥</span><span class="dcta-t">Ver esta pantalla en la demo en vivo</span><span class="dcta-arrow">↗</span></a><img class="shot" src="s5_inv_catalogo.png" alt="Catálogo" data-zoom="1"/></div><div class="info"><p class="lead-desc">El stock de cada tela en tiempo real.</p><ul class="feats" style="--mc:#1A1410"><li>Metros y rollos disponibles</li><li>Alertas de telas por agotarse</li><li>Búsqueda y filtros rápidos</li></ul></div></div></div><div class="tabpane" data-tab="tab"><div class="layout"><div class="shot-wrap"><a class="demo-cta" style="--mc:#1A1410" href="demo.html#vista=inventario&tabInv=tablero" target="_blank" rel="noopener"><span class="dcta-ic">🖥</span><span class="dcta-t">Ver esta pantalla en la demo en vivo</span><span class="dcta-arrow">↗</span></a><img class="shot" src="s6_inv_tablero.png" alt="Tablero Mensual" data-zoom="1"/></div><div class="info"><p class="lead-desc">Un resumen del mes con la inteligencia de tu negocio.</p><ul class="feats" style="--mc:#1A1410"><li>Cuánto entregaste y cuánto recibiste</li><li>Tus telas más vendidas</li><li>Tus clientes más importantes</li></ul></div></div></div>
+      <div class="bottom">
+        <button class="nav prev">← Anterior</button>
+        <div class="pager"><span class="curN">2</span> / 8</div>
+        <button class="nav next">Siguiente →</button>
+      </div>
+    </section>
+    <section class="slide" data-id="m4">
+      <div class="top">
+        <div class="topL"><span class="bullet" style="background:#2563eb"></span>
+        <span class="kicker">Módulo N° 04</span></div>
+        <button class="back-btn" data-go="cover">← Regresar al índice</button>
+      </div>
+      <h2 class="title">Control de Pagos</h2>
+      <div class="layout"><div class="shot-wrap"><a class="demo-cta" style="--mc:#2563eb" href="demo.html#vista=pagos" target="_blank" rel="noopener"><span class="dcta-ic">🖥</span><span class="dcta-t">Ver esta pantalla en la demo en vivo</span><span class="dcta-arrow">↗</span></a><img class="shot" src="s3_pagos.png" alt="Control de Pagos" data-zoom="1"/></div><div class="info"><p class="lead-desc">Todas tus facturas con su saldo calculado automáticamente.</p><ul class="feats" style="--mc:#2563eb"><li>Estados por color: pagado, pendiente, vencido</li><li>Hasta 3 abonos por factura con comprobantes</li><li>Exportable a Excel</li></ul></div></div>
+      <div class="bottom">
+        <button class="nav prev">← Anterior</button>
+        <div class="pager"><span class="curN">2</span> / 8</div>
+        <button class="nav next">Siguiente →</button>
+      </div>
+    </section>
+    <section class="slide" data-id="m5">
+      <div class="top">
+        <div class="topL"><span class="bullet" style="background:#0e7490"></span>
+        <span class="kicker">Módulo N° 05</span></div>
+        <button class="back-btn" data-go="cover">← Regresar al índice</button>
+      </div>
+      <h2 class="title">Embarques de Importación</h2>
+      <div class="layout"><div class="shot-wrap"><a class="demo-cta" style="--mc:#0e7490" href="demo.html#vista=embarques" target="_blank" rel="noopener"><span class="dcta-ic">🖥</span><span class="dcta-t">Ver esta pantalla en la demo en vivo</span><span class="dcta-arrow">↗</span></a><img class="shot" src="s7_embarques.png" alt="Embarques de Importación" data-zoom="1"/></div><div class="info"><p class="lead-desc">El seguimiento de cada contenedor, del puerto a tu bodega.</p><ul class="feats" style="--mc:#0e7490"><li>Estados: tránsito, aduana, liberado, entregado</li><li>Fecha estimada de llegada</li><li>Importar y exportar a Excel</li></ul></div></div>
+      <div class="bottom">
+        <button class="nav prev">← Anterior</button>
+        <div class="pager"><span class="curN">2</span> / 8</div>
+        <button class="nav next">Siguiente →</button>
+      </div>
+    </section>
+    <section class="slide" data-id="m6">
+      <div class="top">
+        <div class="topL"><span class="bullet" style="background:#b91c1c"></span>
+        <span class="kicker">Módulo N° 06</span></div>
+        <button class="back-btn" data-go="cover">← Regresar al índice</button>
+      </div>
+      <h2 class="title">Control de Caja</h2>
+      <div class="layout"><div class="shot-wrap"><a class="demo-cta" style="--mc:#b91c1c" href="demo.html#vista=caja" target="_blank" rel="noopener"><span class="dcta-ic">🖥</span><span class="dcta-t">Ver esta pantalla en la demo en vivo</span><span class="dcta-arrow">↗</span></a><img class="shot" src="s8_caja.png" alt="Control de Caja" data-zoom="1"/></div><div class="info"><p class="lead-desc">Tus egresos del día y los cierres del periodo, siempre cuadrados.</p><ul class="feats" style="--mc:#b91c1c"><li>Registro de egresos con notas</li><li>Cierres de caja con histórico</li><li>Exportable a Excel</li></ul></div></div>
+      <div class="bottom">
+        <button class="nav prev">← Anterior</button>
+        <div class="pager"><span class="curN">2</span> / 8</div>
+        <button class="nav next">Siguiente →</button>
+      </div>
+    </section>
+  
+    <section class="slide" data-id="precios">
+      <div class="top">
+        <div class="topL"><span class="bullet" style="background:#16a34a"></span>
+        <span class="kicker">Precios · El plan</span></div>
+        <button class="back-btn" data-go="cover">← Regresar al índice</button>
+      </div>
+      <h2 class="title">Un plan. <em>Todo incluido.</em></h2>
+      <div class="price-layout">
+        <div class="pcard">
+          <div class="ptoggle">
+            <span class="pslider" id="pslider"></span>
+            <button id="pbMensual" onclick="setPPlan('mensual')">Mensual</button>
+            <button id="pbAnual" class="on" onclick="setPPlan('anual')">Anual · 2 meses gratis</button>
+          </div>
+          <div class="pprice-row"><span class="pcur">$</span><span class="pprice" id="pprice">2,075</span><span class="pper">/mes</span></div>
+          <div class="pbill" id="pbill">facturado anual · <b>$24,900/año</b></div>
+          <div class="psetup" id="psetup">Setup inicial <span class="pfree">GRATIS</span></div>
+          <div class="psave" id="psave">Ahorras casi $10,000 el primer año</div>
+          <a class="pcta" href="https://wa.me/525618735396?text=Hola,%20quiero%20agendar%20una%20demo%20de%20la%20plataforma" target="_blank" rel="noopener">Agendar una demo</a>
+        </div>
+        <div class="pinfo">
+          <p class="plead">Todo tu negocio textil en una sola plataforma — por <b>$69 al día</b>, menos que una comida con el equipo.</p>
+          <ul class="pfeats">
+            <li>Los <b>6 módulos completos</b></li>
+            <li>Reportes de WhatsApp automáticos</li>
+            <li>Notificaciones a tu celular</li>
+            <li>Hasta 5 usuarios para tu equipo</li>
+            <li>Soporte y actualizaciones incluidas</li>
+          </ul>
+          <p class="pnote">¿Operación más chica o más grande? Tengo planes Básico y Empresa también.</p>
+        </div>
+      </div>
+      <div class="bottom">
+        <button class="nav prev">← Anterior</button>
+        <div class="pager"><span class="curN">8</span> / 8</div>
+        <button class="nav next" disabled>—</button>
+      </div>
+    </section>
 </div>
-
+<div class="lb" id="lb"><img id="lb-img" alt=""/><div class="lb-hint">Clic o Esc para cerrar</div></div>
 <script>
-const PLANS = {
-  anual:   { price:"2,075", detail:'facturado anual · <b>$24,900/año</b>', setup:'Setup inicial <span class="free">GRATIS</span>', save:"Ahorras casi $10,000 el primer año vs el plan mensual", saveShow:true, badge:"★ Recomendado · Ahorra ~$10,000 al año" },
-  mensual: { price:"2,490", detail:'pago mes a mes · <b>sin compromiso</b>', setup:'+ Setup inicial único de $5,000', save:"", saveShow:false, badge:"Cancela cuando quieras" }
-};
-function setPlan(p){
-  const d = PLANS[p];
-  document.getElementById('price').textContent = d.price;
-  document.getElementById('billDetail').innerHTML = d.detail;
-  document.getElementById('setupLine').innerHTML = d.setup;
-  const sb = document.getElementById('saveBanner');
-  sb.style.display = d.saveShow ? 'block' : 'none';
-  sb.textContent = d.save;
-  document.getElementById('badge').textContent = d.badge;
-  // toggle states
-  document.getElementById('btnMensual').classList.toggle('on', p==='mensual');
-  document.getElementById('btnAnual').classList.toggle('on', p==='anual');
-  moveSlider();
+const ORDER=["cover", "m1", "m2", "m3", "m4", "m5", "m6", "precios"];
+const TOTAL=ORDER.length;
+let idx=0;
+function show(i){
+  idx=Math.max(0,Math.min(TOTAL-1,i));
+  document.querySelectorAll(".slide").forEach(s=>s.classList.toggle("active",s.dataset.id===ORDER[idx]));
+  document.querySelectorAll(".curN").forEach(el=>el.textContent=String(idx+1));
+  document.querySelectorAll(".slide.active .nav.prev").forEach(b=>b.toggleAttribute("disabled",idx===0));
+  document.querySelectorAll(".slide.active .nav.next:not([data-end])").forEach(b=>b.toggleAttribute("disabled",idx===TOTAL-1));
+  document.querySelectorAll(".info").forEach(el=>{el.scrollTop=0;});
+  if(ORDER[idx]==="precios") setTimeout(movePSlider,30);
 }
-function moveSlider(){
-  const anualOn = document.getElementById('btnAnual').classList.contains('on');
-  const btn = anualOn ? document.getElementById('btnAnual') : document.getElementById('btnMensual');
-  const slider = document.getElementById('slider');
-  slider.style.left = btn.offsetLeft + 'px';
-  slider.style.width = btn.offsetWidth + 'px';
+function goto(id){const i=ORDER.indexOf(id);if(i>=0)show(i);}
+document.querySelectorAll("[data-go]").forEach(btn=>btn.addEventListener("click",e=>{e.preventDefault();goto(btn.dataset.go);}));
+document.body.addEventListener("click",e=>{
+  if(e.target.matches(".nav.prev"))show(idx-1);
+  else if(e.target.matches(".nav.next"))show(idx+1);
+});
+document.querySelectorAll(".stab").forEach(b=>b.addEventListener("click",()=>{
+  const key=b.dataset.tab,mod=b.dataset.module;
+  const slide=document.querySelector('.slide[data-id="'+mod+'"]');
+  slide.querySelectorAll(".stab").forEach(s=>s.classList.toggle("active",s.dataset.tab===key));
+  slide.querySelectorAll(".tabpane").forEach(p=>p.classList.toggle("active",p.dataset.tab===key));
+}));
+const lb=document.getElementById("lb"),lbImg=document.getElementById("lb-img");
+document.querySelectorAll("[data-zoom]").forEach(img=>img.addEventListener("click",()=>{lbImg.src=img.src;lb.classList.add("show");}));
+lb.addEventListener("click",()=>lb.classList.remove("show"));
+// Toggle de precios
+const PP={anual:{price:"2,075",bill:'facturado anual · <b>$24,900/año</b>',setup:'Setup inicial <span class="pfree">GRATIS</span>',save:"Ahorras casi $10,000 el primer año",show:true},mensual:{price:"2,490",bill:'pago mes a mes · <b>sin compromiso</b>',setup:'+ Setup inicial único de $5,000',save:"",show:false}};
+function setPPlan(p){
+  const d=PP[p];
+  document.getElementById('pprice').textContent=d.price;
+  document.getElementById('pbill').innerHTML=d.bill;
+  document.getElementById('psetup').innerHTML=d.setup;
+  const sv=document.getElementById('psave');sv.style.display=d.show?'block':'none';sv.textContent=d.save;
+  document.getElementById('pbMensual').classList.toggle('on',p==='mensual');
+  document.getElementById('pbAnual').classList.toggle('on',p==='anual');
+  movePSlider();
 }
-window.addEventListener('load', moveSlider);
-window.addEventListener('resize', moveSlider);
+function movePSlider(){
+  const anualOn=document.getElementById('pbAnual').classList.contains('on');
+  const btn=anualOn?document.getElementById('pbAnual'):document.getElementById('pbMensual');
+  const sl=document.getElementById('pslider');
+  sl.style.left=btn.offsetLeft+'px';sl.style.width=btn.offsetWidth+'px';
+}
+document.addEventListener("keydown",e=>{
+  if(lb.classList.contains("show")){if(e.key==="Escape")lb.classList.remove("show");return;}
+  if(e.key==="ArrowRight"||e.key===" "||e.key==="PageDown"){show(idx+1);e.preventDefault();}
+  else if(e.key==="ArrowLeft"||e.key==="PageUp"){show(idx-1);e.preventDefault();}
+  else if(e.key==="Escape"||e.key==="Home"){show(0);}
+  else if(e.key==="End"){show(TOTAL-1);}
+  else if(e.key==="f"||e.key==="F"){if(!document.fullscreenElement)document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();else document.exitFullscreen&&document.exitFullscreen();}
+  else if(/^[1-8]$/.test(e.key)){show(parseInt(e.key,10)-1);}
+});
+window.addEventListener('resize',()=>{if(ORDER[idx]==="precios")movePSlider();});
+show(0);
 </script>
-</body>
-</html>
+</body></html>
