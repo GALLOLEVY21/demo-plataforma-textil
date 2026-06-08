@@ -1,30 +1,16 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<title>Presentación · Plataforma Industria Textil</title>
+<title>Plataforma para la Industria Textil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
-
-
-
-
-
-
-
-
 *{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --paper:#fdf8f0; --paper2:#F5F0E8; --line:#e6dcc4; --line2:#d4c9b0;
-  --ink:#1A1410; --ink2:#3d342a; --muted:#7A6E5F; --faint:#9A8E7F;
-  --indigo:#4f46e5; --indigo-d:#4338ca; --indigo-soft:#eef2ff;
-}
+:root{--paper:#fdf8f0;--paper2:#F5F0E8;--line:#e6dcc4;--line2:#d4c9b0;--ink:#1A1410;--ink2:#3d342a;--muted:#7A6E5F;--faint:#9A8E7F;--indigo:#4f46e5;--indigo-d:#4338ca;--indigo-soft:#eef2ff;}
 html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased}
 body{display:flex;align-items:center;justify-content:center}
-
-/* Contenedor del deck */
 .deck{position:relative;width:100vw;height:100vh}
 .slide{position:absolute;inset:0;display:none;flex-direction:column;padding:28px 40px 22px;background:var(--paper);overflow:hidden}
 .slide.active{display:flex}
-
-/* ════════ COVER ════════ */
+/* COVER */
 .cover-wrap{flex:1;display:flex;flex-direction:column;padding:18px 36px}
 .cover-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px}
 .cover-kicker{display:inline-flex;align-items:center;gap:9px;padding:7px 14px 7px 11px;border:1px solid var(--indigo);background:var(--indigo-soft);color:var(--indigo-d);border-radius:999px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:500}
@@ -34,563 +20,193 @@ body{display:flex;align-items:center;justify-content:center}
 .cover-h1 em{font-style:italic;color:var(--indigo)}
 .cover-lead{margin-top:18px;font-size:14px;color:var(--ink2);max-width:54em;line-height:1.55}
 .cover-lead b{color:var(--ink);font-weight:600}
-
-.ix{margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:8px 22px;align-content:start}
-.ix-row{display:flex;align-items:center;gap:14px;padding:13px 18px;background:#fffdf8;border:1px solid var(--line);border-radius:11px;cursor:pointer;transition:all .15s ease;font-family:inherit;text-align:left;width:100%}
+.ix{margin-top:34px;display:grid;grid-template-columns:1fr 1fr;gap:9px 22px;align-content:start}
+.ix-row{display:flex;align-items:center;gap:14px;padding:14px 18px;background:#fffdf8;border:1px solid var(--line);border-radius:11px;cursor:pointer;transition:all .15s ease;font-family:inherit;text-align:left;width:100%}
 .ix-row:hover{transform:translateY(-2px);border-color:var(--line2);box-shadow:0 8px 22px rgba(26,20,16,.10)}
-.ix-row:active{transform:translateY(0)}
-.ix-dot{width:11px;height:11px;border-radius:50%;flex:none;box-shadow:0 0 0 4px color-mix(in srgb,currentColor 0%,transparent)}
+.ix-dot{width:11px;height:11px;border-radius:50%;flex:none}
 .ix-n{font-family:'DM Mono',monospace;font-size:12px;color:var(--faint);width:24px;letter-spacing:.1em}
 .ix-t{font-size:15px;font-weight:600;color:var(--ink);flex:1}
-.ix-time{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.06em}
-.ix-arrow{margin-left:8px;color:var(--faint);font-size:18px;transition:transform .15s, color .15s}
+.ix-arrow{margin-left:8px;color:var(--faint);font-size:18px;transition:transform .15s,color .15s}
 .ix-row:hover .ix-arrow{color:var(--indigo);transform:translateX(3px)}
-.tips-row{grid-column:1 / -1;background:var(--paper2);border-color:var(--line2)}
-
-/* ════════ MODULE SLIDE ════════ */
+/* MODULE */
 .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
 .topL{display:flex;align-items:center;gap:10px}
 .bullet{width:12px;height:12px;border-radius:50%}
 .kicker{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.24em;color:var(--muted);text-transform:uppercase;font-weight:600}
-.hl{margin-left:8px;padding:3px 8px;background:var(--indigo-soft);color:var(--indigo-d);border-radius:999px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;font-weight:600}
 .back-btn{padding:8px 16px;background:transparent;border:1px solid var(--line2);border-radius:999px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--ink2);text-transform:uppercase;cursor:pointer;transition:all .15s ease}
 .back-btn:hover{background:var(--ink);color:#f5efe2;border-color:var(--ink)}
 .title{font-family:'DM Serif Display',serif;font-weight:400;font-size:42px;line-height:1.04;letter-spacing:-.5px;color:var(--ink);margin-bottom:14px}
-
-.layout{flex:1;display:grid;grid-template-columns:60% 1fr;gap:30px;min-height:0;overflow:hidden}
+.layout{flex:1;display:grid;grid-template-columns:60% 1fr;gap:34px;min-height:0;overflow:hidden}
 .shot-wrap{display:flex;flex-direction:column;align-items:stretch;justify-content:center;min-height:0;gap:12px}
-.demo-cta{display:flex;align-items:center;justify-content:center;gap:12px;padding:11px 18px;background:var(--ink);color:#f5efe2;border-radius:8px;font-family:'DM Mono',monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;font-weight:600;transition:all .18s ease;border:none;cursor:pointer;flex:none}
+.demo-cta{display:flex;align-items:center;justify-content:center;gap:12px;padding:11px 18px;background:var(--ink);color:#f5efe2;border-radius:8px;font-family:'DM Mono',monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;font-weight:600;transition:all .18s ease;flex:none}
 .demo-cta:hover{background:var(--mc);color:#fff;transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.18)}
 .dcta-ic{font-size:14px;line-height:1}
-.dcta-t{flex:none}
 .dcta-arrow{opacity:.65;font-size:14px}
 .demo-cta:hover .dcta-arrow{opacity:1}
 .shot{max-width:100%;max-height:calc(100% - 50px);width:auto;height:auto;object-fit:contain;border:1px solid var(--line2);border-radius:6px;box-shadow:0 14px 34px rgba(26,20,16,.12),0 3px 8px rgba(26,20,16,.06);background:#fff;cursor:zoom-in;transition:transform .15s;align-self:center}
 .shot:hover{transform:scale(1.01)}
-.info{display:flex;flex-direction:column;overflow-y:auto;padding-right:6px}
-.block{margin-bottom:14px}
-.bk{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.24em;color:var(--ink);text-transform:uppercase;font-weight:600;margin-bottom:5px}
-.bt{font-size:13.5px;line-height:1.5;color:var(--ink2)}
-.steps{margin:0;padding-left:20px;color:var(--ink2);font-size:13.5px;line-height:1.55}
-.steps li{margin-bottom:3px}
-.steps li::marker{color:var(--ink);font-weight:700}
-.quote{background:var(--paper2);border-left:4px solid var(--ink);padding:11px 14px;border-radius:0 6px 6px 0;margin-bottom:14px}
-.qt{font-family:'DM Serif Display',serif;font-style:italic;font-size:16px;line-height:1.4;color:var(--ink);margin-top:3px}
-.tip{margin-top:auto;padding-top:10px;border-top:1px dashed var(--line2);font-size:12px;color:var(--muted);line-height:1.4}
-.tk{display:inline-block;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;margin-right:6px}
-
-/* SUBTABS dentro de Inventario */
-.subtabs{display:flex;gap:6px;margin-bottom:12px}
-.stab{padding:8px 16px;border:1px solid var(--line2);background:transparent;border-radius:999px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;cursor:pointer;font-weight:500;transition:all .15s ease}
-.stab:hover{color:var(--ink);border-color:var(--ink)}
-.stab.active{background:var(--ink);color:#f5efe2;border-color:var(--ink)}
-.tabpane{display:none;flex:1;min-height:0}
-.tabpane.active{display:flex;flex-direction:column}
-
-/* BOTTOM NAV */
+.info{display:flex;flex-direction:column;justify-content:center;overflow-y:auto;padding-right:6px}
+.lead-desc{font-family:'DM Serif Display',serif;font-size:21px;line-height:1.32;color:var(--ink);margin-bottom:22px}
+.feats{list-style:none;padding:0}
+.feats li{display:flex;gap:12px;padding:11px 0;font-size:14.5px;line-height:1.45;color:var(--ink2);border-bottom:1px solid var(--line)}
+.feats li:last-child{border-bottom:none}
+.feats li::before{content:"→";color:var(--mc);font-weight:700;flex:none}
 .bottom{display:flex;justify-content:space-between;align-items:center;padding-top:18px;margin-top:14px;border-top:1px solid var(--line)}
 .nav{padding:9px 18px;background:transparent;border:1px solid var(--line2);border-radius:999px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--ink2);text-transform:uppercase;cursor:pointer;transition:all .15s ease;font-weight:500}
 .nav:hover:not([disabled]){background:var(--indigo);color:#fff;border-color:var(--indigo)}
 .nav[disabled]{opacity:.35;cursor:default}
 .pager{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.18em;color:var(--muted)}
 .pager .curN{color:var(--ink);font-weight:600}
-
-/* TIPS PAGE */
-.tips-cols{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:40px;min-height:0;overflow:hidden}
-.tips-cols h3{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.26em;color:var(--indigo);text-transform:uppercase;font-weight:600;padding-bottom:10px;border-bottom:1px solid var(--line2);margin-bottom:14px}
-.rules{list-style:none;padding:0}
-.rules li{display:flex;gap:10px;padding:8px 0;font-size:13px;line-height:1.5;color:var(--ink2);border-bottom:1px dashed var(--line)}
-.rules li::before{content:"●";color:var(--indigo);font-size:9px;line-height:1.6;flex:none}
-.rules li:last-child{border-bottom:none}
-.rules li b{color:var(--ink);font-weight:700}
-.pitch{margin-top:14px;background:var(--paper2);border:1px solid var(--line2);border-radius:8px;padding:18px 22px}
-.pk{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.22em;color:var(--indigo);text-transform:uppercase;font-weight:600;margin-bottom:8px}
-.pt{font-family:'DM Serif Display',serif;font-style:italic;font-size:16px;line-height:1.4;color:var(--ink)}
-
-/* LIGHTBOX */
+.subtabs{display:flex;gap:6px;margin-bottom:12px}
+.stab{padding:8px 16px;border:1px solid var(--line2);background:transparent;border-radius:999px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;cursor:pointer;font-weight:500;transition:all .15s ease}
+.stab:hover{color:var(--ink);border-color:var(--ink)}
+.stab.active{background:var(--ink);color:#f5efe2;border-color:var(--ink)}
+.tabpane{display:none;flex:1;min-height:0}
+.tabpane.active{display:flex;flex-direction:column}
 .lb{position:fixed;inset:0;background:rgba(15,17,20,.94);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out;padding:30px}
 .lb.show{display:flex}
 .lb img{max-width:100%;max-height:100%;width:auto;height:auto;border-radius:4px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
 .lb-hint{position:absolute;bottom:18px;left:0;right:0;text-align:center;font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.2em;color:#94a3b8;text-transform:uppercase}
-
-/* AYUDA flotante */
-.help{position:fixed;bottom:14px;right:14px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.16em;color:var(--faint);text-transform:uppercase;background:rgba(253,248,240,.85);backdrop-filter:blur(4px);padding:7px 12px;border-radius:999px;border:1px solid var(--line);pointer-events:none}
-.help kbd{font-family:'DM Mono',monospace;background:#fff;border:1px solid var(--line2);border-radius:4px;padding:1px 6px;font-size:10px;color:var(--ink);margin:0 2px}
-</style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"></head>
+</style></head>
 <body>
-
 <div class="deck">
   
 <section class="slide active" data-id="cover">
   <div class="cover-wrap">
     <div class="cover-top">
-      <span class="cover-kicker">● Presentación Interactiva · Demo</span>
-      <div class="cover-meta">
-        Plataforma para la <b>Industria Textil</b><br/>
-        Duración total · <b>≈ 12 minutos</b><br/>
-        Módulos · <b>6</b> + cierre
-      </div>
+      <span class="cover-kicker">● Plataforma para la Industria Textil</span>
+      <div class="cover-meta">Sistema de gestión<br/><b>6 módulos</b></div>
     </div>
-
-    <h1 class="cover-h1">Pica un módulo<br/><em>y arranca el recorrido.</em></h1>
-    <div class="cover-lead">Cada bullet te lleva al guion del módulo: captura grande de la pantalla + qué decir + qué hacer + frase clave. Botón "Regresar al índice" en cada uno. Atajos de teclado: ← / → para navegar, <b>Esc</b> para volver, <b>F</b> para pantalla completa.</div>
-
+    <h1 class="cover-h1">Todo tu negocio textil,<br/><em>en una sola plataforma.</em></h1>
+    <div class="cover-lead">Pícale a cada módulo para ver cómo funciona, con una vista de la pantalla real. El botón <b>"Ver en la demo en vivo"</b> abre la plataforma para que la pruebes tú mismo. Atajos: ← / → para navegar, <b>F</b> para pantalla completa.</div>
     <div class="ix">
-      
-    <button class="ix-row" data-go="m1">
-      <span class="ix-dot" style="background:#4f46e5"></span>
-      <span class="ix-n">01</span>
-      <span class="ix-t">Panel de Inicio</span>
-      <span class="ix-time">0:20 – 1:30</span>
-      <span class="ix-arrow">→</span>
-    </button>
-    <button class="ix-row" data-go="m2">
-      <span class="ix-dot" style="background:#4f46e5"></span>
-      <span class="ix-n">02</span>
-      <span class="ix-t">Mi Día</span>
-      <span class="ix-time">1:30 – 2:30</span>
-      <span class="ix-arrow">→</span>
-    </button>
-    <button class="ix-row" data-go="m3">
-      <span class="ix-dot" style="background:#1A1410"></span>
-      <span class="ix-n">03</span>
-      <span class="ix-t">Inventario de Telas</span>
-      <span class="ix-time">2:30 – 6:30</span>
-      <span class="ix-arrow">→</span>
-    </button>
-    <button class="ix-row" data-go="m4">
-      <span class="ix-dot" style="background:#2563eb"></span>
-      <span class="ix-n">04</span>
-      <span class="ix-t">Control de Pagos</span>
-      <span class="ix-time">6:30 – 8:00</span>
-      <span class="ix-arrow">→</span>
-    </button>
-    <button class="ix-row" data-go="m5">
-      <span class="ix-dot" style="background:#0e7490"></span>
-      <span class="ix-n">05</span>
-      <span class="ix-t">Embarques de Importación</span>
-      <span class="ix-time">8:00 – 9:30</span>
-      <span class="ix-arrow">→</span>
-    </button>
-    <button class="ix-row" data-go="m6">
-      <span class="ix-dot" style="background:#b91c1c"></span>
-      <span class="ix-n">06</span>
-      <span class="ix-t">Control de Caja</span>
-      <span class="ix-time">9:30 – 10:30</span>
-      <span class="ix-arrow">→</span>
-    </button>
-      <button class="ix-row tips-row" data-go="tips">
-        <span class="ix-dot" style="background:#4f46e5"></span>
-        <span class="ix-n">07</span>
-        <span class="ix-t">Reglas de oro · Cierre</span>
-        <span class="ix-time">10:30 – 12:00</span>
-        <span class="ix-arrow">→</span>
-      </button>
+      <button class="ix-row" data-go="m1"><span class="ix-dot" style="background:#4f46e5"></span><span class="ix-n">01</span><span class="ix-t">Panel de Inicio</span><span class="ix-arrow">→</span></button><button class="ix-row" data-go="m2"><span class="ix-dot" style="background:#4f46e5"></span><span class="ix-n">02</span><span class="ix-t">Mi Día</span><span class="ix-arrow">→</span></button><button class="ix-row" data-go="m3"><span class="ix-dot" style="background:#1A1410"></span><span class="ix-n">03</span><span class="ix-t">Inventario de Telas</span><span class="ix-arrow">→</span></button><button class="ix-row" data-go="m4"><span class="ix-dot" style="background:#2563eb"></span><span class="ix-n">04</span><span class="ix-t">Control de Pagos</span><span class="ix-arrow">→</span></button><button class="ix-row" data-go="m5"><span class="ix-dot" style="background:#0e7490"></span><span class="ix-n">05</span><span class="ix-t">Embarques de Importación</span><span class="ix-arrow">→</span></button><button class="ix-row" data-go="m6"><span class="ix-dot" style="background:#b91c1c"></span><span class="ix-n">06</span><span class="ix-t">Control de Caja</span><span class="ix-arrow">→</span></button>
     </div>
   </div>
 </section>
   
     <section class="slide" data-id="m1">
       <div class="top">
-        <div class="topL">
-          <span class="bullet" style="background:#4f46e5"></span>
-          <span class="kicker">Módulo N° 01 · 0:20 – 1:30</span>
-        </div>
+        <div class="topL"><span class="bullet" style="background:#4f46e5"></span>
+        <span class="kicker">Módulo N° 01</span></div>
         <button class="back-btn" data-go="cover">← Regresar al índice</button>
       </div>
       <h2 class="title">Panel de Inicio</h2>
-      
-        <div class="layout">
-          <div class="shot-wrap">
-            <a class="demo-cta" style="--mc:#4f46e5" href="demo.html#vista=dashboard" target="_blank" rel="noopener"><span class="dcta-ic">🖥</span><span class="dcta-t">Abrir esta pantalla en la demo en vivo</span><span class="dcta-arrow">↗</span></a>
-            <img class="shot" src="s1_inicio.png" alt="Panel de Inicio" data-zoom="1"/>
-          </div>
-          
-      <div class="info">
-        <div class="block">
-          <div class="bk">¿Qué se ve?</div>
-          <div class="bt">Los 4 KPIs del día, entregas y arribos en vivo, tareas con prioridades, y abajo el resumen de inventario, embarques y caja pendiente.</div>
-        </div>
-        <div class="block">
-          <div class="bk">Qué hacer</div>
-          <ol class="steps"><li>Señala los 4 KPIs grandes.</li><li>Pica una tarjeta vencida — te lleva directo a esa lista.</li><li>Vuelve a Inicio.</li></ol>
-        </div>
-        <div class="quote" style="border-left-color:#4f46e5">
-          <div class="bk" style="color:#4f46e5">Frase clave</div>
-          <div class="qt"><em>«Sin abrir nada, ya sabes que tienes 2 entregas hoy, 2 contenedores esta semana y 4 cosas vencidas. Eso es lo primero que ves cada mañana.»</em></div>
-        </div>
-        <div class="tip"><span class="tk" style="color:#4f46e5">Tip</span> Empieza siempre aquí: pega más cuando ven que el día se les abre solo.</div>
-      </div>
-        </div>
+      <div class="layout"><div class="shot-wrap"><a class="demo-cta" style="--mc:#4f46e5" href="demo.html#vista=dashboard" target="_blank" rel="noopener"><span class="dcta-ic">🖥</span><span class="dcta-t">Ver esta pantalla en la demo en vivo</span><span class="dcta-arrow">↗</span></a><img class="shot" src="s1_inicio.png" alt="Panel de Inicio" data-zoom="1"/></div><div class="info"><p class="lead-desc">Lo primero que ves cada mañana: el resumen completo de tu negocio en una sola pantalla.</p><ul class="feats" style="--mc:#4f46e5"><li>Entregas y arribos del día</li><li>Tareas pendientes por prioridad</li><li>Resumen de inventario, embarques y caja</li></ul></div></div>
       <div class="bottom">
         <button class="nav prev">← Anterior</button>
-        <div class="pager"><span class="curN">2</span> / 8</div>
+        <div class="pager"><span class="curN">2</span> / 7</div>
         <button class="nav next">Siguiente →</button>
       </div>
     </section>
     <section class="slide" data-id="m2">
       <div class="top">
-        <div class="topL">
-          <span class="bullet" style="background:#4f46e5"></span>
-          <span class="kicker">Módulo N° 02 · 1:30 – 2:30</span>
-        </div>
+        <div class="topL"><span class="bullet" style="background:#4f46e5"></span>
+        <span class="kicker">Módulo N° 02</span></div>
         <button class="back-btn" data-go="cover">← Regresar al índice</button>
       </div>
       <h2 class="title">Mi Día</h2>
-      
-        <div class="layout">
-          <div class="shot-wrap">
-            <a class="demo-cta" style="--mc:#4f46e5" href="demo.html#vista=mi_dia" target="_blank" rel="noopener"><span class="dcta-ic">🖥</span><span class="dcta-t">Abrir esta pantalla en la demo en vivo</span><span class="dcta-arrow">↗</span></a>
-            <img class="shot" src="s2_mi_dia.png" alt="Mi Día" data-zoom="1"/>
-          </div>
-          
-      <div class="info">
-        <div class="block">
-          <div class="bk">¿Qué se ve?</div>
-          <div class="bt">Entregas programadas y tareas en una sola pantalla. Pestañas Hoy / Esta Semana / Vencidas. Prioridades por color, recurrentes con 🔁.</div>
-        </div>
-        <div class="block">
-          <div class="bk">Qué hacer</div>
-          <ol class="steps"><li>Marca una tarea con ✓ — desaparece visualmente.</li><li>Señala una tarea recurrente (la flechita azul).</li><li>Apunta una urgente en rojo y una vencida.</li></ol>
-        </div>
-        <div class="quote" style="border-left-color:#4f46e5">
-          <div class="bk" style="color:#4f46e5">Frase clave</div>
-          <div class="qt"><em>«Aquí está tu día completo. Las urgentes en rojo, las recurrentes con su flechita. Si marcas una recurrente, te genera la siguiente sola.»</em></div>
-        </div>
-        <div class="tip"><span class="tk" style="color:#4f46e5">Tip</span> El click visible (✓) los engancha — es la primera 'acción' del demo.</div>
-      </div>
-        </div>
+      <div class="layout"><div class="shot-wrap"><a class="demo-cta" style="--mc:#4f46e5" href="demo.html#vista=mi_dia" target="_blank" rel="noopener"><span class="dcta-ic">🖥</span><span class="dcta-t">Ver esta pantalla en la demo en vivo</span><span class="dcta-arrow">↗</span></a><img class="shot" src="s2_mi_dia.png" alt="Mi Día" data-zoom="1"/></div><div class="info"><p class="lead-desc">Tus entregas y pendientes del día, organizados por prioridad y por fecha.</p><ul class="feats" style="--mc:#4f46e5"><li>Entregas programadas con su detalle</li><li>Tareas con prioridad por color</li><li>Recordatorios que se repiten en automático</li></ul></div></div>
       <div class="bottom">
         <button class="nav prev">← Anterior</button>
-        <div class="pager"><span class="curN">2</span> / 8</div>
+        <div class="pager"><span class="curN">2</span> / 7</div>
         <button class="nav next">Siguiente →</button>
       </div>
     </section>
     <section class="slide" data-id="m3">
       <div class="top">
-        <div class="topL">
-          <span class="bullet" style="background:#1A1410"></span>
-          <span class="kicker">Módulo N° 03 · 2:30 – 6:30</span><span class="hl">⭐ EL WOW</span>
-        </div>
+        <div class="topL"><span class="bullet" style="background:#1A1410"></span>
+        <span class="kicker">Módulo N° 03</span></div>
         <button class="back-btn" data-go="cover">← Regresar al índice</button>
       </div>
       <h2 class="title">Inventario de Telas</h2>
-      <div class="subtabs"><button class="stab active" data-tab="movs" data-module="m3">Movimientos</button><button class="stab" data-tab="cat" data-module="m3">Catálogo</button><button class="stab" data-tab="tab" data-module="m3">Tablero Mensual</button></div>
-            <div class="tabpane active" data-tab="movs">
-              <div class="layout">
-                <div class="shot-wrap">
-                  <a class="demo-cta" style="--mc:#1A1410" href="demo.html#vista=inventario&tabInv=movimientos" target="_blank" rel="noopener"><span class="dcta-ic">🖥</span><span class="dcta-t">Abrir esta pantalla en la demo en vivo</span><span class="dcta-arrow">↗</span></a>
-                  <img class="shot" src="s4_inv_movs.png" alt="Movimientos" data-zoom="1"/>
-                </div>
-                
-      <div class="info">
-        <div class="block">
-          <div class="bk">¿Qué se ve?</div>
-          <div class="bt">El corazón textil. Estilo editorial con DM Serif. Caja verde de Reporte WhatsApp + caja azul de Reporte por Período. Botón Reporte Visual = imagen lista para mandar.</div>
-        </div>
-        <div class="block">
-          <div class="bk">Qué hacer</div>
-          <ol class="steps"><li>Muestra el encabezado serif (impacto visual).</li><li>Pica REPORTE VISUAL — abre la imagen lista para WhatsApp.</li><li>Espera. Que reaccionen. No expliques de más.</li></ol>
-        </div>
-        <div class="quote" style="border-left-color:#1A1410">
-          <div class="bk" style="color:#1A1410">Frase clave</div>
-          <div class="qt"><em>«Hoy se entregaron 4 salidas de tela. Mira lo que pasa cuando le pico aquí…»</em></div>
-        </div>
-        <div class="tip"><span class="tk" style="color:#1A1410">Tip</span> ★ Éste es EL momento del demo. Si recuerdan una sola cosa, que sea esto.</div>
-      </div>
-              </div>
-            </div>
-            <div class="tabpane" data-tab="cat">
-              <div class="layout">
-                <div class="shot-wrap">
-                  <a class="demo-cta" style="--mc:#1A1410" href="demo.html#vista=inventario&tabInv=catalogo" target="_blank" rel="noopener"><span class="dcta-ic">🖥</span><span class="dcta-t">Abrir esta pantalla en la demo en vivo</span><span class="dcta-arrow">↗</span></a>
-                  <img class="shot" src="s5_inv_catalogo.png" alt="Catálogo" data-zoom="1"/>
-                </div>
-                
-      <div class="info">
-        <div class="block">
-          <div class="bk">¿Qué se ve?</div>
-          <div class="bt">Stock por tela en tiempo real. Alertas POR AGOTARSE (≤30 rollos, amarillo) y AGOTADA (rojo).</div>
-        </div>
-        <div class="block">
-          <div class="bk">Qué hacer</div>
-          <ol class="steps"><li>Pica la pestaña CATÁLOGO.</li><li>Señala una tela 'POR AGOTARSE'.</li><li>Apunta el filtro 'SOLO STOCK BAJO'.</li></ol>
-        </div>
-        <div class="quote" style="border-left-color:#1A1410">
-          <div class="bk" style="color:#1A1410">Frase clave</div>
-          <div class="qt"><em>«Stock de cada tela en tiempo real. Mira — Pana Coderoy ya está por agotarse; te avisa antes de quedarte sin.»</em></div>
-        </div>
-        <div class="tip"><span class="tk" style="color:#1A1410">Tip</span> Aquí es donde 'evitar quedarse sin tela' se vuelve tangible.</div>
-      </div>
-              </div>
-            </div>
-            <div class="tabpane" data-tab="tab">
-              <div class="layout">
-                <div class="shot-wrap">
-                  <a class="demo-cta" style="--mc:#1A1410" href="demo.html#vista=inventario&tabInv=tablero" target="_blank" rel="noopener"><span class="dcta-ic">🖥</span><span class="dcta-t">Abrir esta pantalla en la demo en vivo</span><span class="dcta-arrow">↗</span></a>
-                  <img class="shot" src="s6_inv_tablero.png" alt="Tablero Mensual" data-zoom="1"/>
-                </div>
-                
-      <div class="info">
-        <div class="block">
-          <div class="bk">¿Qué se ve?</div>
-          <div class="bt">Agregado del mes: cuánto entregaste, cuánto recibiste, top 3 telas más vendidas, top 3 clientes que más compran.</div>
-        </div>
-        <div class="block">
-          <div class="bk">Qué hacer</div>
-          <ol class="steps"><li>Pica la pestaña TABLERO.</li><li>Señala ENTREGADO vs RECIBIDO EN EL MES.</li><li>Apunta el Top 3 clientes.</li></ol>
-        </div>
-        <div class="quote" style="border-left-color:#1A1410">
-          <div class="bk" style="color:#1A1410">Frase clave</div>
-          <div class="qt"><em>«Y al cerrar el mes ya sabes: vendiste 49 rollos, recibiste 90, tus 3 mejores clientes son estos. Sin armar un solo Excel.»</em></div>
-        </div>
-        <div class="tip"><span class="tk" style="color:#1A1410">Tip</span> Aquí cierras al dueño: inteligencia de negocio sin trabajo extra.</div>
-      </div>
-              </div>
-            </div>
+      <div class="subtabs"><button class="stab active" data-tab="movs" data-module="m3">Movimientos</button><button class="stab" data-tab="cat" data-module="m3">Catálogo</button><button class="stab" data-tab="tab" data-module="m3">Tablero Mensual</button></div><div class="tabpane active" data-tab="movs"><div class="layout"><div class="shot-wrap"><a class="demo-cta" style="--mc:#1A1410" href="demo.html#vista=inventario&tabInv=movimientos" target="_blank" rel="noopener"><span class="dcta-ic">🖥</span><span class="dcta-t">Ver esta pantalla en la demo en vivo</span><span class="dcta-arrow">↗</span></a><img class="shot" src="s4_inv_movs.png" alt="Movimientos" data-zoom="1"/></div><div class="info"><p class="lead-desc">Registra cada entrada y salida de tela, y genera el reporte del día.</p><ul class="feats" style="--mc:#1A1410"><li>Alta de movimientos en segundos</li><li>Reporte diario listo para WhatsApp</li><li>Reportes por semana o por mes</li></ul></div></div></div><div class="tabpane" data-tab="cat"><div class="layout"><div class="shot-wrap"><a class="demo-cta" style="--mc:#1A1410" href="demo.html#vista=inventario&tabInv=catalogo" target="_blank" rel="noopener"><span class="dcta-ic">🖥</span><span class="dcta-t">Ver esta pantalla en la demo en vivo</span><span class="dcta-arrow">↗</span></a><img class="shot" src="s5_inv_catalogo.png" alt="Catálogo" data-zoom="1"/></div><div class="info"><p class="lead-desc">El stock de cada tela en tiempo real.</p><ul class="feats" style="--mc:#1A1410"><li>Metros y rollos disponibles</li><li>Alertas de telas por agotarse</li><li>Búsqueda y filtros rápidos</li></ul></div></div></div><div class="tabpane" data-tab="tab"><div class="layout"><div class="shot-wrap"><a class="demo-cta" style="--mc:#1A1410" href="demo.html#vista=inventario&tabInv=tablero" target="_blank" rel="noopener"><span class="dcta-ic">🖥</span><span class="dcta-t">Ver esta pantalla en la demo en vivo</span><span class="dcta-arrow">↗</span></a><img class="shot" src="s6_inv_tablero.png" alt="Tablero Mensual" data-zoom="1"/></div><div class="info"><p class="lead-desc">Un resumen del mes con la inteligencia de tu negocio.</p><ul class="feats" style="--mc:#1A1410"><li>Cuánto entregaste y cuánto recibiste</li><li>Tus telas más vendidas</li><li>Tus clientes más importantes</li></ul></div></div></div>
       <div class="bottom">
         <button class="nav prev">← Anterior</button>
-        <div class="pager"><span class="curN">2</span> / 8</div>
+        <div class="pager"><span class="curN">2</span> / 7</div>
         <button class="nav next">Siguiente →</button>
       </div>
     </section>
     <section class="slide" data-id="m4">
       <div class="top">
-        <div class="topL">
-          <span class="bullet" style="background:#2563eb"></span>
-          <span class="kicker">Módulo N° 04 · 6:30 – 8:00</span>
-        </div>
+        <div class="topL"><span class="bullet" style="background:#2563eb"></span>
+        <span class="kicker">Módulo N° 04</span></div>
         <button class="back-btn" data-go="cover">← Regresar al índice</button>
       </div>
       <h2 class="title">Control de Pagos</h2>
-      
-        <div class="layout">
-          <div class="shot-wrap">
-            <a class="demo-cta" style="--mc:#2563eb" href="demo.html#vista=pagos" target="_blank" rel="noopener"><span class="dcta-ic">🖥</span><span class="dcta-t">Abrir esta pantalla en la demo en vivo</span><span class="dcta-arrow">↗</span></a>
-            <img class="shot" src="s3_pagos.png" alt="Control de Pagos" data-zoom="1"/>
-          </div>
-          
-      <div class="info">
-        <div class="block">
-          <div class="bk">¿Qué se ve?</div>
-          <div class="bt">12 facturas con totales por estado arriba ($367,350 cobrado · $296,700 por cobrar · $60,000 vencido). Saldo calculado solo.</div>
-        </div>
-        <div class="block">
-          <div class="bk">Qué hacer</div>
-          <ol class="steps"><li>Pica una factura con varios abonos para abrir el detalle.</li><li>Apunta el badge de estado (verde / naranja / rojo).</li><li>Señala el botón Exportar Excel.</li></ol>
-        </div>
-        <div class="quote" style="border-left-color:#2563eb">
-          <div class="bk" style="color:#2563eb">Frase clave</div>
-          <div class="qt"><em>«Tus facturas con saldo calculado solo. Hasta 3 abonos por factura, comprobantes guardados por cliente, todo a Excel.»</em></div>
-        </div>
-        <div class="tip"><span class="tk" style="color:#2563eb">Tip</span> Si el cliente sufre con cobranza, dedícale más tiempo aquí.</div>
-      </div>
-        </div>
+      <div class="layout"><div class="shot-wrap"><a class="demo-cta" style="--mc:#2563eb" href="demo.html#vista=pagos" target="_blank" rel="noopener"><span class="dcta-ic">🖥</span><span class="dcta-t">Ver esta pantalla en la demo en vivo</span><span class="dcta-arrow">↗</span></a><img class="shot" src="s3_pagos.png" alt="Control de Pagos" data-zoom="1"/></div><div class="info"><p class="lead-desc">Todas tus facturas con su saldo calculado automáticamente.</p><ul class="feats" style="--mc:#2563eb"><li>Estados por color: pagado, pendiente, vencido</li><li>Hasta 3 abonos por factura con comprobantes</li><li>Exportable a Excel</li></ul></div></div>
       <div class="bottom">
         <button class="nav prev">← Anterior</button>
-        <div class="pager"><span class="curN">2</span> / 8</div>
+        <div class="pager"><span class="curN">2</span> / 7</div>
         <button class="nav next">Siguiente →</button>
       </div>
     </section>
     <section class="slide" data-id="m5">
       <div class="top">
-        <div class="topL">
-          <span class="bullet" style="background:#0e7490"></span>
-          <span class="kicker">Módulo N° 05 · 8:00 – 9:30</span>
-        </div>
+        <div class="topL"><span class="bullet" style="background:#0e7490"></span>
+        <span class="kicker">Módulo N° 05</span></div>
         <button class="back-btn" data-go="cover">← Regresar al índice</button>
       </div>
       <h2 class="title">Embarques de Importación</h2>
-      
-        <div class="layout">
-          <div class="shot-wrap">
-            <a class="demo-cta" style="--mc:#0e7490" href="demo.html#vista=embarques" target="_blank" rel="noopener"><span class="dcta-ic">🖥</span><span class="dcta-t">Abrir esta pantalla en la demo en vivo</span><span class="dcta-arrow">↗</span></a>
-            <img class="shot" src="s7_embarques.png" alt="Embarques de Importación" data-zoom="1"/>
-          </div>
-          
-      <div class="info">
-        <div class="block">
-          <div class="bk">¿Qué se ve?</div>
-          <div class="bt">5 estados con colores: Liberado, Entregado, Entregado/Karen, En Aduana, En Tránsito. ETA con días restantes/vencidos.</div>
-        </div>
-        <div class="block">
-          <div class="bk">Qué hacer</div>
-          <ol class="steps"><li>Señala los 5 contadores arriba.</li><li>Apunta el embarque En Aduana con 'Venció hace 1d' en rojo.</li><li>Señala los Liberados — esos llegan esta semana.</li></ol>
-        </div>
-        <div class="quote" style="border-left-color:#0e7490">
-          <div class="bk" style="color:#0e7490">Frase clave</div>
-          <div class="qt"><em>«Cada contenedor lo sigues por estado: tránsito, aduana, liberado y entregado. Te marca lo que se está atrasando.»</em></div>
-        </div>
-        <div class="tip"><span class="tk" style="color:#0e7490">Tip</span> Si trabaja con importación, este módulo solo ya vende.</div>
-      </div>
-        </div>
+      <div class="layout"><div class="shot-wrap"><a class="demo-cta" style="--mc:#0e7490" href="demo.html#vista=embarques" target="_blank" rel="noopener"><span class="dcta-ic">🖥</span><span class="dcta-t">Ver esta pantalla en la demo en vivo</span><span class="dcta-arrow">↗</span></a><img class="shot" src="s7_embarques.png" alt="Embarques de Importación" data-zoom="1"/></div><div class="info"><p class="lead-desc">El seguimiento de cada contenedor, del puerto a tu bodega.</p><ul class="feats" style="--mc:#0e7490"><li>Estados: tránsito, aduana, liberado, entregado</li><li>Fecha estimada de llegada</li><li>Importar y exportar a Excel</li></ul></div></div>
       <div class="bottom">
         <button class="nav prev">← Anterior</button>
-        <div class="pager"><span class="curN">2</span> / 8</div>
+        <div class="pager"><span class="curN">2</span> / 7</div>
         <button class="nav next">Siguiente →</button>
       </div>
     </section>
     <section class="slide" data-id="m6">
       <div class="top">
-        <div class="topL">
-          <span class="bullet" style="background:#b91c1c"></span>
-          <span class="kicker">Módulo N° 06 · 9:30 – 10:30</span>
-        </div>
+        <div class="topL"><span class="bullet" style="background:#b91c1c"></span>
+        <span class="kicker">Módulo N° 06</span></div>
         <button class="back-btn" data-go="cover">← Regresar al índice</button>
       </div>
       <h2 class="title">Control de Caja</h2>
-      
-        <div class="layout">
-          <div class="shot-wrap">
-            <a class="demo-cta" style="--mc:#b91c1c" href="demo.html#vista=caja" target="_blank" rel="noopener"><span class="dcta-ic">🖥</span><span class="dcta-t">Abrir esta pantalla en la demo en vivo</span><span class="dcta-arrow">↗</span></a>
-            <img class="shot" src="s8_caja.png" alt="Control de Caja" data-zoom="1"/>
-          </div>
-          
-      <div class="info">
-        <div class="block">
-          <div class="bk">¿Qué se ve?</div>
-          <div class="bt">Caja pendiente actual, cierres hechos, total histórico, promedio. Pestañas Egresos Pendientes / Cierres Históricos.</div>
-        </div>
-        <div class="block">
-          <div class="bk">Qué hacer</div>
-          <ol class="steps"><li>Apunta los 4 KPIs.</li><li>Pica un egreso para mostrar el detalle.</li><li>Señala el botón rojo 'Cerrar Caja'.</li></ol>
-        </div>
-        <div class="quote" style="border-left-color:#b91c1c">
-          <div class="bk" style="color:#b91c1c">Frase clave</div>
-          <div class="qt"><em>«Egresos del día, cierres del mes. Al cerrar el periodo, todo queda archivado y exportable.»</em></div>
-        </div>
-        <div class="tip"><span class="tk" style="color:#b91c1c">Tip</span> Pásalo rápido. Suficiente para que sepan que existe.</div>
-      </div>
-        </div>
+      <div class="layout"><div class="shot-wrap"><a class="demo-cta" style="--mc:#b91c1c" href="demo.html#vista=caja" target="_blank" rel="noopener"><span class="dcta-ic">🖥</span><span class="dcta-t">Ver esta pantalla en la demo en vivo</span><span class="dcta-arrow">↗</span></a><img class="shot" src="s8_caja.png" alt="Control de Caja" data-zoom="1"/></div><div class="info"><p class="lead-desc">Tus egresos del día y los cierres del periodo, siempre cuadrados.</p><ul class="feats" style="--mc:#b91c1c"><li>Registro de egresos con notas</li><li>Cierres de caja con histórico</li><li>Exportable a Excel</li></ul></div></div>
       <div class="bottom">
         <button class="nav prev">← Anterior</button>
-        <div class="pager"><span class="curN">2</span> / 8</div>
+        <div class="pager"><span class="curN">2</span> / 7</div>
         <button class="nav next">Siguiente →</button>
       </div>
     </section>
-  
-<section class="slide" data-id="tips">
-  <div class="top">
-    <div class="topL">
-      <span class="bullet" style="background:#4f46e5"></span>
-      <span class="kicker">Cierre · Reglas de oro</span>
-    </div>
-    <button class="back-btn" data-go="cover">← Regresar al índice</button>
-  </div>
-  <h2 class="title">Reglas de oro,<br/><em>y qué hacer después de la junta.</em></h2>
-  <div class="tips-cols">
-    <div>
-      <h3>Durante la junta</h3>
-      <ul class="rules">
-        <li><b>Narra como historia, no leas campos.</b> "Imagínate que llegó el contenedor…" pega más que "este campo se llama ETA".</li>
-        <li><b>Que toquen.</b> A los 2-3 minutos invítalo a hacer un clic. La gente que toca, compra.</li>
-        <li><b>No muestres todo.</b> 6 módulos en 12 minutos. Si te alargas, los pierdes.</li>
-        <li><b>El reporte de WhatsApp es el gancho.</b> Si recuerdan una sola cosa, que sea eso.</li>
-        <li>Si preguntan <em>"¿puede hacer X?"</em> y sí, muéstralo. Si no, di <em>"se puede agregar — cuéntame más"</em>. Nunca digas "no".</li>
-        <li><b>Nunca reinicies a mitad de demo.</b> El botón "Reiniciar datos" es para ANTES o DESPUÉS.</li>
-      </ul>
-    </div>
-    <div>
-      <h3>Antes y después</h3>
-      <ul class="rules">
-        <li><b>Antes:</b> abre la demo con tiempo (la primera carga tarda 1-2s). Que la pantalla ya esté en "Inicio".</li>
-        <li><b>Antes:</b> pica "Reiniciar datos" para arrancar fresco. Ten el folleto PDF listo.</li>
-        <li><b>Después (en menos de 30 min):</b> manda por WhatsApp el folleto PDF.</li>
-        <li><b>Después:</b> si subiste la demo a Vercel, mándale el enlace.</li>
-        <li><b>Después:</b> haz UNA pregunta concreta — <em>"¿Te late que armemos un piloto con tus 5 telas más vendidas y 3 clientes?"</em></li>
-      </ul>
-      <div class="pitch">
-        <div class="pk">Pitch corto · para abrir</div>
-        <div class="pt">«Esta es la plataforma con datos de ejemplo, pero así se vería con los tuyos: telas, clientes, embarques. Imagínate que es lunes 9 am y abres tu compu…»</div>
-      </div>
-    </div>
-  </div>
-  <div class="bottom">
-    <button class="nav prev">← Anterior</button>
-    <div class="pager"><span class="curN">8</span> / 8</div>
-    <button class="nav next" disabled>—</button>
-  </div>
-</section>
 </div>
-
 <div class="lb" id="lb"><img id="lb-img" alt=""/><div class="lb-hint">Clic o Esc para cerrar</div></div>
-
 <script>
-const ORDER = ["cover", "m1", "m2", "m3", "m4", "m5", "m6", "tips"];
-const TOTAL = ORDER.length;
-let idx = 0; // cover
-
-function show(i) {
-  idx = Math.max(0, Math.min(TOTAL - 1, i));
-  const slides = document.querySelectorAll(".slide");
-  slides.forEach(s => s.classList.toggle("active", s.dataset.id === ORDER[idx]));
-  // actualizar pager
-  document.querySelectorAll(".curN").forEach(el => {
-    el.textContent = String(idx + 1);
-  });
-  // botones prev/next
-  document.querySelectorAll(".slide.active .nav.prev").forEach(b => b.toggleAttribute("disabled", idx === 0));
-  document.querySelectorAll(".slide.active .nav.next").forEach(b => b.toggleAttribute("disabled", idx === TOTAL - 1));
-  // scroll arriba en panel info
-  document.querySelectorAll(".info").forEach(el => { el.scrollTop = 0; });
+const ORDER=["cover", "m1", "m2", "m3", "m4", "m5", "m6"];
+const TOTAL=ORDER.length;
+let idx=0;
+function show(i){
+  idx=Math.max(0,Math.min(TOTAL-1,i));
+  document.querySelectorAll(".slide").forEach(s=>s.classList.toggle("active",s.dataset.id===ORDER[idx]));
+  document.querySelectorAll(".curN").forEach(el=>el.textContent=String(idx+1));
+  document.querySelectorAll(".slide.active .nav.prev").forEach(b=>b.toggleAttribute("disabled",idx===0));
+  document.querySelectorAll(".slide.active .nav.next").forEach(b=>b.toggleAttribute("disabled",idx===TOTAL-1));
+  document.querySelectorAll(".info").forEach(el=>{el.scrollTop=0;});
 }
-
-function goto(id) {
-  const i = ORDER.indexOf(id);
-  if (i >= 0) show(i);
-}
-
-// Bullets del índice + back buttons
-document.querySelectorAll("[data-go]").forEach(btn => {
-  btn.addEventListener("click", e => { e.preventDefault(); goto(btn.dataset.go); });
+function goto(id){const i=ORDER.indexOf(id);if(i>=0)show(i);}
+document.querySelectorAll("[data-go]").forEach(btn=>btn.addEventListener("click",e=>{e.preventDefault();goto(btn.dataset.go);}));
+document.body.addEventListener("click",e=>{
+  if(e.target.matches(".nav.prev"))show(idx-1);
+  else if(e.target.matches(".nav.next"))show(idx+1);
 });
-
-// Nav prev/next
-document.body.addEventListener("click", e => {
-  if (e.target.matches(".nav.prev")) show(idx - 1);
-  else if (e.target.matches(".nav.next")) show(idx + 1);
+document.querySelectorAll(".stab").forEach(b=>b.addEventListener("click",()=>{
+  const key=b.dataset.tab,mod=b.dataset.module;
+  const slide=document.querySelector('.slide[data-id="'+mod+'"]');
+  slide.querySelectorAll(".stab").forEach(s=>s.classList.toggle("active",s.dataset.tab===key));
+  slide.querySelectorAll(".tabpane").forEach(p=>p.classList.toggle("active",p.dataset.tab===key));
+}));
+const lb=document.getElementById("lb"),lbImg=document.getElementById("lb-img");
+document.querySelectorAll("[data-zoom]").forEach(img=>img.addEventListener("click",()=>{lbImg.src=img.src;lb.classList.add("show");}));
+lb.addEventListener("click",()=>lb.classList.remove("show"));
+document.addEventListener("keydown",e=>{
+  if(lb.classList.contains("show")){if(e.key==="Escape")lb.classList.remove("show");return;}
+  if(e.key==="ArrowRight"||e.key===" "||e.key==="PageDown"){show(idx+1);e.preventDefault();}
+  else if(e.key==="ArrowLeft"||e.key==="PageUp"){show(idx-1);e.preventDefault();}
+  else if(e.key==="Escape"||e.key==="Home"){show(0);}
+  else if(e.key==="End"){show(TOTAL-1);}
+  else if(e.key==="f"||e.key==="F"){if(!document.fullscreenElement)document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();else document.exitFullscreen&&document.exitFullscreen();}
+  else if(/^[1-7]$/.test(e.key)){show(parseInt(e.key,10)-1);}
 });
-
-// Sub-tabs (Inventario)
-document.querySelectorAll(".stab").forEach(b => {
-  b.addEventListener("click", () => {
-    const key = b.dataset.tab;
-    const mod = b.dataset.module;
-    const slide = document.querySelector('.slide[data-id="' + mod + '"]');
-    slide.querySelectorAll(".stab").forEach(s => s.classList.toggle("active", s.dataset.tab === key));
-    slide.querySelectorAll(".tabpane").forEach(p => p.classList.toggle("active", p.dataset.tab === key));
-  });
-});
-
-// Lightbox
-const lb = document.getElementById("lb");
-const lbImg = document.getElementById("lb-img");
-document.querySelectorAll("[data-zoom]").forEach(img => {
-  img.addEventListener("click", () => {
-    lbImg.src = img.src;
-    lb.classList.add("show");
-  });
-});
-lb.addEventListener("click", () => lb.classList.remove("show"));
-
-// Teclado
-document.addEventListener("keydown", e => {
-  if (lb.classList.contains("show")) {
-    if (e.key === "Escape") lb.classList.remove("show");
-    return;
-  }
-  if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") { show(idx + 1); e.preventDefault(); }
-  else if (e.key === "ArrowLeft" || e.key === "PageUp") { show(idx - 1); e.preventDefault(); }
-  else if (e.key === "Escape") { show(0); }
-  else if (e.key === "Home") { show(0); }
-  else if (e.key === "End") { show(TOTAL - 1); }
-  else if (e.key === "f" || e.key === "F") {
-    if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
-    else document.exitFullscreen?.();
-  }
-  else if (/^[1-8]$/.test(e.key)) { show(parseInt(e.key, 10) - 1); }
-});
-
 show(0);
 </script>
 </body></html>
