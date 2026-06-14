@@ -1983,9 +1983,9 @@ function App() {
       red -= t;
       if (red <= 0) break;
     }
-    const fuenteUpd = { factura: form.factura, cliente: form.cliente, tela: form.tela, rollos: form.rollos, metros: form.metros, total: form.total, pago1: sp.pago1 ? String(sp.pago1) : "", pago2: sp.pago2 ? String(sp.pago2) : "", pago3: sp.pago3 ? String(sp.pago3) : "", notas: form.notas, estado: calcEstado({ ...form, pago1: sp.pago1, pago2: sp.pago2, pago3: sp.pago3 }), foto_url: form.foto_url || null, foto_url1: form.foto_url1 || null, foto_url2: form.foto_url2 || null, foto_url3: form.foto_url3 || null };
+    const fuenteUpd = { factura: form.factura, cliente: form.cliente, tela: form.tela, rollos: form.rollos, metros: form.metros, total: form.total, pago1: sp.pago1 ? String(sp.pago1) : "", pago2: sp.pago2 ? String(sp.pago2) : "", pago3: sp.pago3 ? String(sp.pago3) : "", notas: (form.notas ? form.notas + " · " : "") + "Saldo a favor de " + fmt(monto) + " aplicado a " + destino.factura + " (" + destino.cliente + ")", estado: calcEstado({ ...form, pago1: sp.pago1, pago2: sp.pago2, pago3: sp.pago3 }), foto_url: form.foto_url || null, foto_url1: form.foto_url1 || null, foto_url2: form.foto_url2 || null, foto_url3: form.foto_url3 || null };
     await supabase.from("pagos").update(fuenteUpd).eq("id", editId);
-    await supabase.from("pagos").update({ pago1: dp.pago1, pago2: dp.pago2, pago3: dp.pago3, estado: calcEstado({ ...destino, ...dp }), notas: (destino.notas ? destino.notas + " · " : "") + "Saldo a favor aplicado de " + form.factura }).eq("id", destino.id);
+    await supabase.from("pagos").update({ pago1: dp.pago1, pago2: dp.pago2, pago3: dp.pago3, estado: calcEstado({ ...destino, ...dp }), notas: (destino.notas ? destino.notas + " · " : "") + "Abono de " + fmt(monto) + " con saldo a favor de " + form.factura + " (" + form.cliente + ")" }).eq("id", destino.id);
     await cargarPagos();
     setCreditoTarget("");
     setShowModal(false);
