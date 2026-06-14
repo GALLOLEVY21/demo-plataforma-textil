@@ -69,7 +69,7 @@ function buildSeed(T) {
     rollos: "12",
     metros: "360",
     total: "54000",
-    pago1: "54000",
+    pago1: "56500",
     pago2: "",
     pago3: "",
     notas: "Liquidado a la entrega",
@@ -862,6 +862,27 @@ function buildSeed(T) {
     monto: 600,
     notas: "",
     cierre_id: null
+  }, {
+    id: 14,
+    concepto: "Renta parcial de bodega",
+    fecha: _addD(T, -16),
+    monto: 1800,
+    notas: "",
+    cierre_id: 2
+  }, {
+    id: 15,
+    concepto: "Servicio de luz (CFE)",
+    fecha: _addD(T, -17),
+    monto: 1290,
+    notas: "",
+    cierre_id: 2
+  }, {
+    id: 16,
+    concepto: "Internet y teléfono",
+    fecha: _addD(T, -18),
+    monto: 800,
+    notas: "",
+    cierre_id: 2
   }];
   const caja_cierres = [{
     id: 1,
@@ -1373,7 +1394,8 @@ const sumarFechaRecurrente = (fechaStr, tipo, intervalo) => {
 const fmt = n => new Intl.NumberFormat("es-MX", {
   style: "currency",
   currency: "MXN",
-  maximumFractionDigits: 0
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2
 }).format(Number(n) || 0);
 const fmtNum = n => new Intl.NumberFormat("es-MX", {
   maximumFractionDigits: 2
@@ -10471,12 +10493,44 @@ function App() {
     value: "vencido"
   }, "Vencido"), /*#__PURE__*/React.createElement("option", {
     value: "cancelado"
-  }, "Cancelado")))), form.total && /*#__PURE__*/React.createElement("div", {
+  }, "Cancelado")))), (() => {
+    const cred = form.cliente ? pagos.filter(p => p.cliente === form.cliente && p.id !== editId).reduce((a, p) => {
+      const s = calcSaldo(p);
+      return a + (s < 0 ? -s : 0);
+    }, 0) : 0;
+    const debe = calcSaldo(form);
+    if (!(cred > 0 && debe > 0 && (!form.pago1 || !form.pago2 || !form.pago3))) return null;
+    return /*#__PURE__*/React.createElement("button", {
+      type: "button",
+      onClick: () => {
+        const aplicar = Math.min(cred, debe);
+        setForm(f => {
+          const nf = { ...f };
+          if (!nf.pago1) nf.pago1 = String(aplicar);else if (!nf.pago2) nf.pago2 = String(aplicar);else if (!nf.pago3) nf.pago3 = String(aplicar);
+          nf.notas = (nf.notas ? nf.notas + " · " : "") + "Saldo a favor aplicado";
+          return nf;
+        });
+      },
+      style: {
+        width: "100%",
+        marginBottom: 12,
+        padding: "11px 14px",
+        background: "#dbeafe",
+        border: "1px solid #93c5fd",
+        borderRadius: 10,
+        color: "#1d4ed8",
+        fontWeight: 700,
+        fontSize: 13,
+        cursor: "pointer",
+        textAlign: "left"
+      }
+    }, "💙 Aplicar saldo a favor de " + form.cliente + ": " + fmt(cred));
+  })(), form.total && /*#__PURE__*/React.createElement("div", {
     style: {
       marginBottom: 12,
       padding: "14px 16px",
-      background: calcSaldo(form) <= 0 ? "#dcfce7" : "#fff7ed",
-      border: `1px solid ${calcSaldo(form) <= 0 ? "#86efac" : "#fed7aa"}`,
+      background: calcSaldo(form) < 0 ? "#dbeafe" : calcSaldo(form) === 0 ? "#dcfce7" : "#fff7ed",
+      border: `1px solid ${calcSaldo(form) < 0 ? "#93c5fd" : calcSaldo(form) === 0 ? "#86efac" : "#fed7aa"}`,
       borderRadius: 10
     }
   }, /*#__PURE__*/React.createElement("div", {
@@ -10531,16 +10585,16 @@ function App() {
     style: {
       fontSize: 13,
       fontWeight: 700,
-      color: calcSaldo(form) <= 0 ? "#16a34a" : "#ea580c"
+      color: calcSaldo(form) < 0 ? "#2563eb" : calcSaldo(form) === 0 ? "#16a34a" : "#ea580c"
     }
-  }, calcSaldo(form) <= 0 ? "✅ PAGADO COMPLETO" : "⏳ SALDO PENDIENTE"), /*#__PURE__*/React.createElement("span", {
+  }, calcSaldo(form) < 0 ? "💙 SALDO A FAVOR" : calcSaldo(form) === 0 ? "✅ PAGADO COMPLETO" : "⏳ SALDO PENDIENTE"), /*#__PURE__*/React.createElement("span", {
     style: {
       fontSize: 15,
       fontWeight: 700,
-      color: calcSaldo(form) <= 0 ? "#16a34a" : "#ea580c",
+      color: calcSaldo(form) < 0 ? "#2563eb" : calcSaldo(form) === 0 ? "#16a34a" : "#ea580c",
       fontFamily: "monospace"
     }
-  }, fmt(Math.max(0, calcSaldo(form)))))), /*#__PURE__*/React.createElement("textarea", {
+  }, fmt(Math.abs(calcSaldo(form)))))), /*#__PURE__*/React.createElement("textarea", {
     placeholder: "Notas... (Enter para nueva l\xEDnea)",
     value: form.notas,
     onChange: e => setForm({
