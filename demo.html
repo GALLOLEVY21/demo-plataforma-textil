@@ -1959,6 +1959,26 @@ function App() {
         return;
       }
     }
+    if (Number(form.creditoAplicado) > 0) {
+      let restante = Number(form.creditoAplicado);
+      const fuentes = pagos.filter(p => p.cliente === form.cliente && p.id !== editId && calcSaldo(p) < 0).sort((a, b) => calcSaldo(a) - calcSaldo(b));
+      for (const src of fuentes) {
+        if (restante <= 0) break;
+        const aFavor = -calcSaldo(src);
+        const tomar = Math.min(aFavor, restante);
+        restante -= tomar;
+        let red = tomar;
+        const np = { pago1: Number(src.pago1) || 0, pago2: Number(src.pago2) || 0, pago3: Number(src.pago3) || 0 };
+        for (const k of ["pago3", "pago2", "pago1"]) {
+          const t = Math.min(np[k], red);
+          np[k] -= t;
+          red -= t;
+          if (red <= 0) break;
+        }
+        const srcUpd = { ...src, pago1: np.pago1 ? String(np.pago1) : "", pago2: np.pago2 ? String(np.pago2) : "", pago3: np.pago3 ? String(np.pago3) : "" };
+        await supabase.from("pagos").update({ pago1: srcUpd.pago1, pago2: srcUpd.pago2, pago3: srcUpd.pago3, estado: calcEstado(srcUpd) }).eq("id", src.id);
+      }
+    }
     await guardarPago(datos, !!editId);
   };
   const handleEliminar = async (id, e) => {
@@ -10507,6 +10527,7 @@ function App() {
         setForm(f => {
           const nf = { ...f };
           if (!nf.pago1) nf.pago1 = String(aplicar);else if (!nf.pago2) nf.pago2 = String(aplicar);else if (!nf.pago3) nf.pago3 = String(aplicar);
+          nf.creditoAplicado = aplicar;
           nf.notas = (nf.notas ? nf.notas + " · " : "") + "Saldo a favor aplicado";
           return nf;
         });
