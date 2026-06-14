@@ -1504,6 +1504,7 @@ function App() {
   const [topCliSel, setTopCliSel] = useState(null);
   const [form, setForm] = useState(emptyForm);
   const [editId, setEditId] = useState(null);
+  const [creditoTarget, setCreditoTarget] = useState("");
   const [guardado, setGuardado] = useState(false);
   const [dupPago, setDupPago] = useState(null);
   const [hoverId, setHoverId] = useState(null);
@@ -1959,27 +1960,38 @@ function App() {
         return;
       }
     }
-    if (Number(form.creditoAplicado) > 0) {
-      let restante = Number(form.creditoAplicado);
-      const fuentes = pagos.filter(p => p.cliente === form.cliente && p.id !== editId && calcSaldo(p) < 0).sort((a, b) => calcSaldo(a) - calcSaldo(b));
-      for (const src of fuentes) {
-        if (restante <= 0) break;
-        const aFavor = -calcSaldo(src);
-        const tomar = Math.min(aFavor, restante);
-        restante -= tomar;
-        let red = tomar;
-        const np = { pago1: Number(src.pago1) || 0, pago2: Number(src.pago2) || 0, pago3: Number(src.pago3) || 0 };
-        for (const k of ["pago3", "pago2", "pago1"]) {
-          const t = Math.min(np[k], red);
-          np[k] -= t;
-          red -= t;
-          if (red <= 0) break;
-        }
-        const srcUpd = { ...src, pago1: np.pago1 ? String(np.pago1) : "", pago2: np.pago2 ? String(np.pago2) : "", pago3: np.pago3 ? String(np.pago3) : "" };
-        await supabase.from("pagos").update({ pago1: srcUpd.pago1, pago2: srcUpd.pago2, pago3: srcUpd.pago3, estado: calcEstado(srcUpd) }).eq("id", src.id);
-      }
-    }
     await guardarPago(datos, !!editId);
+  };
+  const aplicarSaldoFavor = async () => {
+    if (!creditoTarget || !editId) return;
+    const destino = pagos.find(p => p.id === creditoTarget);
+    if (!destino) return;
+    const aFavor = -calcSaldo(form);
+    const debe = calcSaldo(destino);
+    const monto = Math.min(aFavor, debe);
+    if (monto <= 0) return;
+    const dp = { pago1: destino.pago1 || "", pago2: destino.pago2 || "", pago3: destino.pago3 || "" };
+    if (!dp.pago1) dp.pago1 = String(monto);else if (!dp.pago2) dp.pago2 = String(monto);else if (!dp.pago3) dp.pago3 = String(monto);else {
+      alert("Esa nota ya tiene 3 abonos; no se puede aplicar más ahí.");
+      return;
+    }
+    const sp = { pago1: Number(form.pago1) || 0, pago2: Number(form.pago2) || 0, pago3: Number(form.pago3) || 0 };
+    let red = monto;
+    for (const k of ["pago3", "pago2", "pago1"]) {
+      const t = Math.min(sp[k], red);
+      sp[k] -= t;
+      red -= t;
+      if (red <= 0) break;
+    }
+    const fuenteUpd = { factura: form.factura, cliente: form.cliente, tela: form.tela, rollos: form.rollos, metros: form.metros, total: form.total, pago1: sp.pago1 ? String(sp.pago1) : "", pago2: sp.pago2 ? String(sp.pago2) : "", pago3: sp.pago3 ? String(sp.pago3) : "", notas: form.notas, estado: calcEstado({ ...form, pago1: sp.pago1, pago2: sp.pago2, pago3: sp.pago3 }), foto_url: form.foto_url || null, foto_url1: form.foto_url1 || null, foto_url2: form.foto_url2 || null, foto_url3: form.foto_url3 || null };
+    await supabase.from("pagos").update(fuenteUpd).eq("id", editId);
+    await supabase.from("pagos").update({ pago1: dp.pago1, pago2: dp.pago2, pago3: dp.pago3, estado: calcEstado({ ...destino, ...dp }), notas: (destino.notas ? destino.notas + " · " : "") + "Saldo a favor aplicado de " + form.factura }).eq("id", destino.id);
+    await cargarPagos();
+    setCreditoTarget("");
+    setShowModal(false);
+    setForm(emptyForm);
+    setEditId(null);
+    alert("✅ Saldo a favor aplicado: " + fmt(monto) + " → " + destino.factura + " (" + destino.cliente + ")");
   };
   const handleEliminar = async (id, e) => {
     e.stopPropagation();
@@ -10514,38 +10526,30 @@ function App() {
   }, "Vencido"), /*#__PURE__*/React.createElement("option", {
     value: "cancelado"
   }, "Cancelado")))), (() => {
-    const cred = form.cliente ? pagos.filter(p => p.cliente === form.cliente && p.id !== editId).reduce((a, p) => {
-      const s = calcSaldo(p);
-      return a + (s < 0 ? -s : 0);
-    }, 0) : 0;
-    const debe = calcSaldo(form);
-    if (!(cred > 0 && debe > 0 && (!form.pago1 || !form.pago2 || !form.pago3))) return null;
-    return /*#__PURE__*/React.createElement("button", {
+    if (!(editId && calcSaldo(form) < 0)) return null;
+    const aFavor = -calcSaldo(form);
+    const pendientes = pagos.filter(p => p.id !== editId && calcSaldo(p) > 0);
+    return /*#__PURE__*/React.createElement("div", {
+      style: { marginBottom: 12, padding: "12px 14px", background: "#eff6ff", border: "1px solid #93c5fd", borderRadius: 10 }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: { fontSize: 13, fontWeight: 700, color: "#1d4ed8", marginBottom: 8 }
+    }, "💙 Tienes " + fmt(aFavor) + " a favor — aplícalo a una nota pendiente:"), pendientes.length === 0 ? /*#__PURE__*/React.createElement("div", {
+      style: { fontSize: 12, color: "#64748b" }
+    }, "No hay notas pendientes de pago.") : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("select", {
+      value: creditoTarget,
+      onChange: e => setCreditoTarget(e.target.value),
+      style: { width: "100%", padding: "9px 10px", borderRadius: 8, border: "1px solid #93c5fd", fontSize: 13, marginBottom: 8, background: "#fff" }
+    }, /*#__PURE__*/React.createElement("option", {
+      value: ""
+    }, "Elige una nota pendiente…"), pendientes.map(p => /*#__PURE__*/React.createElement("option", {
+      key: p.id,
+      value: p.id
+    }, p.factura + " · " + p.cliente + " · debe " + fmt(calcSaldo(p))))), /*#__PURE__*/React.createElement("button", {
       type: "button",
-      onClick: () => {
-        const aplicar = Math.min(cred, debe);
-        setForm(f => {
-          const nf = { ...f };
-          if (!nf.pago1) nf.pago1 = String(aplicar);else if (!nf.pago2) nf.pago2 = String(aplicar);else if (!nf.pago3) nf.pago3 = String(aplicar);
-          nf.creditoAplicado = aplicar;
-          nf.notas = (nf.notas ? nf.notas + " · " : "") + "Saldo a favor aplicado";
-          return nf;
-        });
-      },
-      style: {
-        width: "100%",
-        marginBottom: 12,
-        padding: "11px 14px",
-        background: "#dbeafe",
-        border: "1px solid #93c5fd",
-        borderRadius: 10,
-        color: "#1d4ed8",
-        fontWeight: 700,
-        fontSize: 13,
-        cursor: "pointer",
-        textAlign: "left"
-      }
-    }, "💙 Aplicar saldo a favor de " + form.cliente + ": " + fmt(cred));
+      disabled: !creditoTarget,
+      onClick: aplicarSaldoFavor,
+      style: { width: "100%", padding: "10px", background: creditoTarget ? "#2563eb" : "#cbd5e1", color: "#fff", border: "none", borderRadius: 8, fontWeight: 700, fontSize: 13, cursor: creditoTarget ? "pointer" : "default" }
+    }, "Aplicar saldo a favor")));
   })(), form.total && /*#__PURE__*/React.createElement("div", {
     style: {
       marginBottom: 12,
