@@ -1403,7 +1403,7 @@ const fmtNum = n => new Intl.NumberFormat("es-MX", {
 const fmtFechaCorta = f => {
   if (!f) return "";
   const [y, m, d] = String(f).slice(0, 10).split("-");
-  return `${d}/${m}/${y.slice(2)}`;
+  return `${d}/${m}/${y}`;
 };
 const calcTotalPagado = p => (Number(p.pago1) || 0) + (Number(p.pago2) || 0) + (Number(p.pago3) || 0);
 const calcSaldo = p => Number(p.total || 0) - calcTotalPagado(p);
@@ -1487,7 +1487,7 @@ function App() {
   const [loadingPagos, setLoadingPagos] = useState(true);
   const [filtro, setFiltro] = useState("todos");
   const [busqueda, setBusqueda] = useState("");
-  const [ordenCampo, setOrdenCampo] = useState("factura");
+  const [ordenCampo, setOrdenCampo] = useState("fecha");
   const [ordenDir, setOrdenDir] = useState("desc");
   const [selected, setSelected] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -5844,7 +5844,7 @@ function App() {
         fontSize: 11,
         color: "#64748b"
       }
-    }, p.fecha), /*#__PURE__*/React.createElement("td", {
+    }, fmtFechaCorta(p.fecha)), /*#__PURE__*/React.createElement("td", {
       style: {
         padding: "10px 12px",
         fontSize: 12,
@@ -8545,7 +8545,7 @@ function App() {
       fontSize: 12,
       color: "#64748b"
     }
-  }, (e_.fecha || "").slice(0, 10)), /*#__PURE__*/React.createElement("td", {
+  }, fmtFechaCorta(e_.fecha)), /*#__PURE__*/React.createElement("td", {
     className: "mono",
     style: {
       padding: "10px 14px",
@@ -8918,13 +8918,13 @@ function App() {
         fontWeight: 700,
         color: "#166534"
       }
-    }, "\uD83D\uDD12 Cierre del ", cierreDetalle.fecha_cierre), /*#__PURE__*/React.createElement("div", {
+    }, "\uD83D\uDD12 Cierre del ", fmtFechaCorta(cierreDetalle.fecha_cierre)), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 12,
         color: "#64748b",
         marginTop: 2
       }
-    }, "Caja anterior: ", cierreDetalle.fecha_caja_anterior || "Caja inicial", " \xB7 ", egCierre.length, " egresos")), /*#__PURE__*/React.createElement("button", {
+    }, "Caja anterior: ", (cierreDetalle.fecha_caja_anterior ? fmtFechaCorta(cierreDetalle.fecha_caja_anterior) : "Caja inicial"), " \xB7 ", egCierre.length, " egresos")), /*#__PURE__*/React.createElement("button", {
       onClick: () => setCierreDetalle(null),
       style: {
         background: "#fee2e2",
@@ -10749,7 +10749,7 @@ function App() {
       padding: "12px 14px",
       marginBottom: 18
     }
-  }, [["Factura", dupPago.existente.factura], ["Cliente", dupPago.existente.cliente || "—"], ["Tela", dupPago.existente.tela || "—"], ["Total", fmt(dupPago.existente.total)], ["Fecha", dupPago.existente.fecha || "—"], ["ID", dupPago.existente.id]].map(([k, v]) => /*#__PURE__*/React.createElement("div", {
+  }, [["Factura", dupPago.existente.factura], ["Cliente", dupPago.existente.cliente || "—"], ["Tela", dupPago.existente.tela || "—"], ["Total", fmt(dupPago.existente.total)], ["Fecha", dupPago.existente.fecha ? fmtFechaCorta(dupPago.existente.fecha) : "—"], ["ID", dupPago.existente.id]].map(([k, v]) => /*#__PURE__*/React.createElement("div", {
     key: k,
     style: {
       display: "flex",
