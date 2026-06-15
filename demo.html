@@ -1410,8 +1410,9 @@ const fmtFechaCorta = f => {
   const [y, m, d] = String(f).slice(0, 10).split("-");
   return `${d}/${m}/${y}`;
 };
-const calcTotalPagado = p => (Number(p.pago1) || 0) + (Number(p.pago2) || 0) + (Number(p.pago3) || 0);
-const calcSaldo = p => Number(p.total || 0) - calcTotalPagado(p);
+const r2 = n => Math.round((Number(n) || 0) * 100) / 100;
+const calcTotalPagado = p => r2((Number(p.pago1) || 0) + (Number(p.pago2) || 0) + (Number(p.pago3) || 0));
+const calcSaldo = p => r2(Number(p.total || 0) - calcTotalPagado(p));
 const calcEstado = form => {
   if (form.estado === "cancelado" || form.estado === "vencido") return form.estado;
   return calcSaldo({
@@ -1692,10 +1693,10 @@ function App() {
     if (data) setTareas(data);
     setLoadingTareas(false);
   };
-  const totalCobrado = pagos.filter(p => p.estado === "pagado").reduce((a, b) => a + Number(b.total), 0);
-  const totalPendiente = pagos.filter(p => p.estado === "pendiente").reduce((a, b) => a + Number(b.total), 0);
-  const totalVencido = pagos.filter(p => p.estado === "vencido").reduce((a, b) => a + Number(b.total), 0);
-  const totalGeneral = totalCobrado + totalPendiente + totalVencido;
+  const totalCobrado = r2(pagos.filter(p => p.estado !== "cancelado").reduce((a, b) => a + calcTotalPagado(b), 0));
+  const totalPendiente = r2(pagos.filter(p => p.estado === "pendiente").reduce((a, b) => a + Math.max(0, calcSaldo(b)), 0));
+  const totalVencido = r2(pagos.filter(p => p.estado === "vencido").reduce((a, b) => a + Math.max(0, calcSaldo(b)), 0));
+  const totalGeneral = r2(totalCobrado + totalPendiente + totalVencido);
   const deudas = {};
   pagos.forEach(p => {
     if (p.estado === "pendiente") {
@@ -1973,7 +1974,7 @@ function App() {
     if (!destino) return;
     const aFavor = -calcSaldo(form);
     const debe = calcSaldo(destino);
-    const monto = Math.min(aFavor, debe);
+    const monto = r2(Math.min(aFavor, debe));
     if (monto <= 0) return;
     const dp = { pago1: destino.pago1 || "", pago2: destino.pago2 || "", pago3: destino.pago3 || "" };
     if (!dp.pago1) dp.pago1 = String(monto);else if (!dp.pago2) dp.pago2 = String(monto);else if (!dp.pago3) dp.pago3 = String(monto);else {
@@ -1988,7 +1989,7 @@ function App() {
       red -= t;
       if (red <= 0) break;
     }
-    const fuenteUpd = { factura: form.factura, cliente: form.cliente, tela: form.tela, rollos: form.rollos, metros: form.metros, total: form.total, pago1: sp.pago1 ? String(sp.pago1) : "", pago2: sp.pago2 ? String(sp.pago2) : "", pago3: sp.pago3 ? String(sp.pago3) : "", notas: (form.notas ? form.notas + " · " : "") + "Saldo a favor de " + fmt(monto) + " aplicado a " + destino.factura + " (" + destino.cliente + ")", estado: calcEstado({ ...form, pago1: sp.pago1, pago2: sp.pago2, pago3: sp.pago3 }), foto_url: form.foto_url || null, foto_url1: form.foto_url1 || null, foto_url2: form.foto_url2 || null, foto_url3: form.foto_url3 || null };
+    const fuenteUpd = { factura: form.factura, cliente: form.cliente, tela: form.tela, rollos: form.rollos, metros: form.metros, total: form.total, pago1: sp.pago1 ? String(r2(sp.pago1)) : "", pago2: sp.pago2 ? String(r2(sp.pago2)) : "", pago3: sp.pago3 ? String(r2(sp.pago3)) : "", notas: (form.notas ? form.notas + " · " : "") + "Saldo a favor de " + fmt(monto) + " aplicado a " + destino.factura + " (" + destino.cliente + ")", estado: calcEstado({ ...form, pago1: sp.pago1, pago2: sp.pago2, pago3: sp.pago3 }), foto_url: form.foto_url || null, foto_url1: form.foto_url1 || null, foto_url2: form.foto_url2 || null, foto_url3: form.foto_url3 || null };
     await supabase.from("pagos").update(fuenteUpd).eq("id", editId);
     await supabase.from("pagos").update({ pago1: dp.pago1, pago2: dp.pago2, pago3: dp.pago3, estado: calcEstado({ ...destino, ...dp }), notas: (destino.notas ? destino.notas + " · " : "") + "Abono de " + fmt(monto) + " con saldo a favor de " + form.factura + " (" + form.cliente + ")" }).eq("id", destino.id);
     await cargarPagos();
